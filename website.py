@@ -90,7 +90,7 @@ html_code = """
         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo3.png" alt="Logo 3" width="65" height="65">
         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo 3" width="65" height="65">
     </div>
-    <h1>Deteksi Klasifikasi Suara Burung di Taman Nasional Way Kambas berbasis Deep Learning - Metode Transfer Learning (Arsitektur ConvNeXt)</h1>
+    <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
     
     <h3>Yuk, Upload disini audionya</h3>
     <div class="upload-form">
