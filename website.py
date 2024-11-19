@@ -102,7 +102,6 @@ html_code = """
     <div class="footer">
         <h4>© Developer: Kelompok 13 Deep Learning</h4>
     </div>
-        
 </body>
 </html>
 """
