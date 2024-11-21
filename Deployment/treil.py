@@ -34,8 +34,8 @@ def hasilklasifikasi(output):
         return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/c.png"
 
 # Numeric input from the user
-#output = st.number_input("Masukkan angka (1 atau 2 untuk kelas klasifikasi):", min_value=1, max_value=10, value=1)
-output = st.number_input("Masukkan angka (1 atau 2 untuk kelas klasifikasi):", "")
+output = st.number_input("Masukkan angka (1 atau 2 untuk kelas klasifikasi):",  value=1)
+#output = st.number_input("Masukkan angka (1 atau 2 untuk kelas klasifikasi):", "")
 
 # Get the image URL based on the classification output
 image_url = hasilklasifikasi(output)
