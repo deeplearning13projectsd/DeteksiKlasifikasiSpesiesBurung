@@ -41,11 +41,3 @@ image_url = hasilklasifikasi(output)
 
 # Display the image
 st.image(image_url, caption=f"Gambar untuk kelas {output}", use_column_width=True)
-
-# Optional: Show description or title based on output
-if output == 1:
-    st.write("Ini adalah gambar hasil klasifikasi untuk kelas 1")
-elif output == 2:
-    st.write("Ini adalah gambar hasil klasifikasi untuk kelas 2")
-else:
-    st.write(f"Ini adalah gambar hasil klasifikasi untuk kelas {output}")
