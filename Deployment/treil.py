@@ -27,11 +27,11 @@ st.title("Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifi
 # Function to map output class to corresponding image URL
 def hasilklasifikasi(output):
     if output == 1:
-        return "https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/asset/1.png"
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/a.png"
     elif output == 2:
-        return "https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/2.png"
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/b.png"
     else:
-        return "https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/2.png"
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/c.png"
 
 # Numeric input from the user
 output = st.number_input("Masukkan angka (1 atau 2 untuk kelas klasifikasi):", min_value=1, max_value=10, value=1)
