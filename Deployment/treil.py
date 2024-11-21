@@ -35,7 +35,7 @@ def hasilklasifikasi(output):
 
 # Numeric input from the user
 #output = st.number_input("Masukkan angka (1 atau 2 untuk kelas klasifikasi):", min_value=1, max_value=10, value=1)
-output = st.text_input("Masukkan angka (1 atau 2 untuk kelas klasifikasi):", "")
+output = st.number_input("Masukkan angka (1 atau 2 untuk kelas klasifikasi):", "")
 
 # Get the image URL based on the classification output
 image_url = hasilklasifikasi(output)
