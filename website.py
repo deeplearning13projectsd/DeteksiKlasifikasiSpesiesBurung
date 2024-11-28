@@ -108,7 +108,7 @@ html_code = """
         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo 4" width="65" height="65">
     </div>
     <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
-    
+    <h3>Upload File Audio Here</h3>
 </body>
 </html>
 """
@@ -117,7 +117,7 @@ html_code = """
 st.components.v1.html(html_code, height=360, scrolling=False)
 
 # Tangkap file audio yang diunggah
-uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
+uploaded_file = st.file_uploader(" ", type=["mp3"])
 
 # Proses file audio
 if uploaded_file:
