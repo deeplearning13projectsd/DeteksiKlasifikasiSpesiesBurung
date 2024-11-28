@@ -1,21 +1,24 @@
 import streamlit as st
 
+# Fungsi untuk menambahkan background dari URL
 def add_bg_from_url():
     st.markdown(
-         f"""
-         <style>
-         .stApp {{
-             background-image: url("https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");   
-             background-size: cover;
-             background-position: top center;
-         }}
-         </style>
-         """,
-         unsafe_allow_html=True
-     )
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+            background-size: cover;
+            background-position: top center;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
+# Tambahkan background
 add_bg_from_url()
 
+# Kode HTML untuk tampilan
 html_code = """
 <!DOCTYPE html>
 <html lang="id">
@@ -87,7 +90,7 @@ html_code = """
         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo1.png" alt="Logo 1" width="65" height="65">    
         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo2.png" alt="Logo 2" width="65" height="65"> 
         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo3.png" alt="Logo 3" width="65" height="65">
-         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo 4" width="65" height="65">
+        <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo 4" width="65" height="65">
     </div>
     <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
     
@@ -105,5 +108,27 @@ html_code = """
 </html>
 """
 
-# Display the HTML in Streamlit
+# Tampilkan HTML di Streamlit
 st.components.v1.html(html_code, height=500, scrolling=False)
+
+# File uploader untuk input audio
+uploaded_file = st.file_uploader("Upload file audio", type=["mp3", "wav"])
+
+# Logika untuk menentukan URL berdasarkan input
+def get_image_url(file_name):
+    if file_name == "1.mp3":
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/a.png"
+    elif file_name == "2.mp3":
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/b.png"
+    else:
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/c.png"
+
+# Proses jika ada file yang diunggah
+if uploaded_file is not None:
+    # Ekstrak nama file
+    file_name = uploaded_file.name
+    # Ambil URL gambar sesuai nama file
+    image_url = get_image_url(file_name)
+    # Tampilkan gambar
+    st.image(image_url, caption=f"Output untuk {file_name}", use_column_width=True)
+
