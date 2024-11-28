@@ -128,7 +128,7 @@ if uploaded_file:
     accuracy = get_accuracy()
     
     # Tampilkan akurasi menggunakan st.metric
-    st.metric(label="Akurasi Model", value=f"{accuracy * 100:.2f}%", delta=None)
+    st.metric(label="Akurasi Model", value=f"{accuracy:.2f}", delta=None)
     
     # Ambil nama file
     file_name = uploaded_file.name
