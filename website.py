@@ -108,7 +108,7 @@ html_code = """
         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo 4" width="65" height="65">
     </div>
     <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
-    <h3>Upload File Audio Here</h3>
+    <h2>© Developer: Kelompok 13 Deep Learning</h2>
 </body>
 </html>
 """
@@ -117,7 +117,7 @@ html_code = """
 st.components.v1.html(html_code, height=290, scrolling=False)
 
 # Tangkap file audio yang diunggah
-uploaded_file = st.file_uploader(" ", type=["mp3"])
+uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
 
 # Proses file audio
 if uploaded_file:
@@ -139,7 +139,7 @@ if uploaded_file:
 
 # Menggunakan st.components.v1.html() untuk menampilkan teks dengan kontrol lebih banyak
 html_code = """<div class="footer" style="text-align: center; color: white;">
-    <h2>Version Beta 1.0.4              © Developer: Kelompok 13 Deep Learning</h2>
+    <h2>Version Beta 1.0.4</h2>
 </div>
 """
 st.components.v1.html(html_code, height=50)
