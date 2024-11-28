@@ -137,5 +137,5 @@ if uploaded_file:
     image_url = get_image_url(file_name)
     
     # Tampilkan gambar hasil klasifikasi
-    st.image(image_url, caption=f"Hasil klasifikasi untuk {file_name}", use_column_width=True)
+    st.image(image_url, caption=f"Hasil klasifikasi untuk {file_name}", use_column_width=False)
 
