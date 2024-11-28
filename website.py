@@ -12,7 +12,7 @@ def get_image_url(file_name):
 
 def get_accuracy():
     # Misalnya, akurasi model dapat dihitung berdasarkan hasil uji
-    accuracy = 0.85  # Contoh nilai akurasi (85%)
+    accuracy = 0.78584  # Contoh nilai akurasi (85%)
     return accuracy
 
 # Tambahkan latar belakang ke Streamlit
@@ -128,7 +128,7 @@ if uploaded_file:
     accuracy = get_accuracy()
     
     # Tampilkan akurasi menggunakan st.metric
-    st.metric(label="Akurasi Model", value=f"{accuracy:.2f}", delta=None)
+    st.metric(label="Akurasi Model", value=f"{accuracy:.4f}", delta=None)
     
     # Ambil nama file
     file_name = uploaded_file.name
