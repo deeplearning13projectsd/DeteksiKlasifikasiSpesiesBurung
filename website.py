@@ -5,10 +5,8 @@ def add_bg_from_url():
          f"""
          <style>
          .stApp {{
-             background-image: url("https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");   
-
-             background-size:   
- cover;
+             background-image: url("https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");   
+             background-size: cover;
              background-position: top center;
          }}
          </style>
@@ -17,7 +15,7 @@ def add_bg_from_url():
      )
 
 add_bg_from_url()
-# HTML code as a multi-line string
+
 html_code = """
 <!DOCTYPE html>
 <html lang="id">
@@ -39,48 +37,49 @@ html_code = """
             height: 100vh;
             margin: 0;
             text-align: center;
-        
-        
         }
         .upload-form {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.7);
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         input[type="file"] {
-            margin: 10px 0;
-            padding: 10px;
+            margin: 15px 0;
+            padding: 12px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             background-color: white;
             color: black;
-            font-size: 16px;
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+        input[type="file"]:hover {
+            transform: scale(1.05);
         }
         input[type="submit"] {
-            padding: 10px 20px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 5px;
-            background-color: green;
+            border-radius: 10px;
+            background-color: #28a745;
             color: white;
-            font-size: 16px;
+            font-size: 18px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
         input[type="submit"]:hover {
-            background-color: darkgreen;
+            background-color: #218838;
+            transform: scale(1.05);
         }
         img {
             margin-top: 20px;
-            max-width: 100%;
+            max-width: 80%;
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.7);
         }
-        
- 
     </style>
 </head>
 <body>
@@ -88,7 +87,7 @@ html_code = """
         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo1.png" alt="Logo 1" width="65" height="65">    
         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo2.png" alt="Logo 2" width="65" height="65"> 
         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo3.png" alt="Logo 3" width="65" height="65">
-        <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo 3" width="65" height="65">
+         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo 4" width="65" height="65">
     </div>
     <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
     
@@ -107,6 +106,5 @@ html_code = """
 """
 
 # Display the HTML in Streamlit
-st.components.v1.html(html_code,height=500,  scrolling=False)
-
+st.components.v1.html(html_code, height=500, scrolling=False)
 
