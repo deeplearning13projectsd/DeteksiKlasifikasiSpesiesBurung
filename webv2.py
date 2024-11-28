@@ -105,12 +105,6 @@ html_code = """
     <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
     
     <h3>Yuk, Upload disini audionya</h3>
-    <div class="upload-form">
-        <form action="/" method="post" enctype="multipart/form-data">
-            <input type="file" name="audio" accept="audio/*" required>
-            <input type="submit" value="Upload Audio">
-        </form>
-    </div>
     <div class="footer">
         <h4>© Developer: Kelompok 13 Deep Learning</h4>
     </div>
@@ -120,6 +114,38 @@ html_code = """
 
 # Tampilkan HTML ke Streamlit
 st.components.v1.html(html_code, height=500, scrolling=False)
+
+
+
+
+st.markdown("""
+    <style>
+    .file-uploader {
+        background-color: rgba(255, 255, 255, 0.3) !important; /* Warna transparan */
+        border: 2px solid white !important; /* Tambahkan border putih */
+        color: white !important; /* Ubah warna teks */
+        font-size: 16px !important; /* Sesuaikan ukuran font */
+        border-radius: 12px !important; /* Tambahkan border radius */
+        padding: 10px; /* Tambahkan padding */
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# File uploader dengan ID kustom
+uploaded_file = st.file_uploader(" ", type=["mp3"], key="file-uploader")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 import streamlit as st
 from io import BytesIO
@@ -137,7 +163,7 @@ def get_image_url(file_name):
 st.title("Upload File Audio")
 
 # File uploader Streamlit
-uploaded_file = st.file_uploader("Upload Audio File Here", type=["mp3"])
+uploaded_file = st.file_uploader(" ", type=["mp3"])
 
 if uploaded_file:
     # Ambil nama file
