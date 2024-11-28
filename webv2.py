@@ -10,7 +10,7 @@ def get_image_url(file_name):
     else:
         return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/c.png"
 
-# Fungsi untuk menambahkan latar belakang ke Streamlit
+# Tambahkan latar belakang ke Streamlit
 def add_bg_from_url():
     st.markdown(
         f"""
@@ -28,7 +28,7 @@ def add_bg_from_url():
 # Tambahkan latar belakang
 add_bg_from_url()
 
-# Kode HTML utama (tidak diubah)
+# Kode HTML utama untuk form upload
 html_code = """
 <!DOCTYPE html>
 <html lang="id">
@@ -105,6 +105,12 @@ html_code = """
     <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
     
     <h3>Yuk, Upload disini audionya</h3>
+    <div class="upload-form">
+        <form action="." method="post" enctype="multipart/form-data">
+            <input type="file" name="audio" accept="audio/*" required>
+            <input type="submit" value="Upload Audio">
+        </form>
+    </div>
     <div class="footer">
         <h4>© Developer: Kelompok 13 Deep Learning</h4>
     </div>
@@ -112,65 +118,19 @@ html_code = """
 </html>
 """
 
-# Tampilkan HTML ke Streamlit
+# Tampilkan form HTML
 st.components.v1.html(html_code, height=500, scrolling=False)
 
+# Tangkap file audio yang diunggah
+uploaded_file = st.file_uploader("Upload Audio File (via Streamlit)", type=["mp3"])
 
-
-
-st.markdown("""
-    <style>
-    .file-uploader {
-        background-color: blue;
-        border: 2px solid white !important; /* Tambahkan border putih */
-        color: white !important; /* Ubah warna teks */
-        font-size: 16px !important; /* Sesuaikan ukuran font */
-        border-radius: 12px !important; /* Tambahkan border radius */
-        padding: 10px; /* Tambahkan padding */
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-# File uploader dengan ID kustom
-uploaded_file = st.file_uploader(" ", type=["mp3"], key="file-uploader")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import streamlit as st
-from io import BytesIO
-
-# Fungsi untuk mendapatkan URL gambar
-def get_image_url(file_name):
-    if file_name == "1.mp3":
-        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/a.png"
-    elif file_name == "2.mp3":
-        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/b.png"
-    else:
-        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/c.png"
-
-# Tangkap file dari form HTML atau Streamlit's uploader
-st.title("Upload File Audio")
-
-# File uploader Streamlit
-uploaded_file = st.file_uploader(" ", type=["mp3"])
-
+# Proses file audio
 if uploaded_file:
     # Ambil nama file
     file_name = uploaded_file.name
-
-    # Proses file menggunakan get_image_url
+    
+    # Dapatkan URL gambar berdasarkan nama file
     image_url = get_image_url(file_name)
-
-    # Tampilkan hasil
+    
+    # Tampilkan gambar hasil klasifikasi
     st.image(image_url, caption=f"Hasil klasifikasi untuk {file_name}", use_column_width=True)
