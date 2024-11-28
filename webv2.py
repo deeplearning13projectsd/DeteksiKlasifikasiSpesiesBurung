@@ -106,8 +106,9 @@ html_code = """
     
     <h3>Yuk, Upload disini audionya</h3>
     <div class="upload-form">
-        <form action="/upload" method="post" enctype="multipart/form-data">
+        <form action="/" method="post" enctype="multipart/form-data">
             <input type="file" name="audio" accept="audio/*" required>
+            <input type="submit" value="Upload Audio">
         </form>
     </div>
     <div class="footer">
@@ -120,17 +121,31 @@ html_code = """
 # Tampilkan HTML ke Streamlit
 st.components.v1.html(html_code, height=500, scrolling=False)
 
-# Input file audio menggunakan Streamlit
-uploaded_file = st.file_uploader("Upload Audio File", type=["mp3"])
+import streamlit as st
+from io import BytesIO
 
-# Proses file yang diunggah
+# Fungsi untuk mendapatkan URL gambar
+def get_image_url(file_name):
+    if file_name == "1.mp3":
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/a.png"
+    elif file_name == "2.mp3":
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/b.png"
+    else:
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/c.png"
+
+# Tangkap file dari form HTML atau Streamlit's uploader
+st.title("Upload File Audio")
+
+# File uploader Streamlit
+uploaded_file = st.file_uploader("Upload Audio File Here", type=["mp3"])
+
 if uploaded_file:
     # Ambil nama file
     file_name = uploaded_file.name
-    
-    # Dapatkan URL gambar
+
+    # Proses file menggunakan get_image_url
     image_url = get_image_url(file_name)
-    
+
     # Tampilkan hasil
     st.image(image_url, caption=f"Hasil klasifikasi untuk {file_name}", use_column_width=True)
-
+Catatan Penting:
