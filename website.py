@@ -111,6 +111,7 @@ html_code = """
     
     <div class="footer">
         <h2>© Developer: Kelompok 13 Deep Learning</h2>
+        <h3>Version 1.0.4 </h3>
     </div>
 </body>
 </html>
