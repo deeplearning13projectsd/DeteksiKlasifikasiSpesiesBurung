@@ -138,9 +138,9 @@ if uploaded_file:
 
 
 # Menggunakan st.components.v1.html() untuk menampilkan teks dengan kontrol lebih banyak
-html_code = """<div class="footer">
-    <h2 style="color: white;">© Developer: Kelompok 13 Deep Learning</h2>
-    <h4 style="color: white;">Version Beta 1.0.4</h4>
+html_code = """<div class="footer" style="text-align: center; color: white;">
+    <h2>© Developer: Kelompok 13 Deep Learning</h2>
+    <h4>Version Beta 1.0.4</h4>
 </div>
 """
 st.components.v1.html(html_code, height=50)
