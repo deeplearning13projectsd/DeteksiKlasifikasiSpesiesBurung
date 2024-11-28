@@ -121,7 +121,7 @@ st.components.v1.html(html_code, height=500, scrolling=False)
 st.markdown("""
     <style>
     .file-uploader {
-        background-color: rgba(255, 255, 255, 0.3) !important; /* Warna transparan */
+        background-color: blue;
         border: 2px solid white !important; /* Tambahkan border putih */
         color: white !important; /* Ubah warna teks */
         font-size: 16px !important; /* Sesuaikan ukuran font */
