@@ -138,29 +138,3 @@ if uploaded_file:
     
     # Tampilkan gambar hasil klasifikasi
     st.image(image_url, caption=f"Hasil klasifikasi untuk {file_name}", use_column_width=False)
-
-
-
-
-
-# Tangkap file audio yang diunggah
-uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
-
-# Proses file audio
-if uploaded_file:
-    # Menampilkan akurasi
-    accuracy = get_accuracy()
-    
-    # Tampilkan akurasi menggunakan st.metric
-    st.metric(label="Akurasi Model", value=f"{accuracy:.4f}", delta=None)
-    
-    # Ambil nama file
-    file_name = uploaded_file.name
-    
-    # Dapatkan URL gambar berdasarkan nama file
-    image_url = get_image_url(file_name)
-    
-    # Tampilkan gambar hasil klasifikasi
-    st.image(image_url, caption=f"Hasil klasifikasi untuk {file_name}", use_column_width=False)
-
-
