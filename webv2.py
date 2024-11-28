@@ -110,7 +110,7 @@ html_code = """
     <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
     
     <div class="footer">
-        <h4>© Developer: Kelompok 13 Deep Learning</h4>
+        <h2>© Developer: Kelompok 13 Deep Learning</h2>
     </div>
 </body>
 </html>
