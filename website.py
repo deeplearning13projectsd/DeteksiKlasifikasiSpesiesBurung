@@ -101,10 +101,6 @@ html_code = """
     </div>
     <div class="footer">
         <h4>© Developer: Kelompok 13 Deep Learning</h4>
-        <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/logogithub.png" width="20" height="20" alt="Logo GitHub">
-        <span>https://github.com/deeplearning13projectsd</span>
-        <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/logogithub.png" width="20" height="20" alt="Logo GitHub">
-        <span>https://github.com/sains-data</span>
     </div>
 </body>
 </html>
