@@ -107,7 +107,6 @@ html_code = """
     <div class="footer">
         <h4>© Developer: Kelompok 13 Deep Learning</h4>
     </div>
-    <h2>Upload Audio-mu</h2>
 </body>
 </html>
 """
@@ -116,7 +115,7 @@ html_code = """
 st.components.v1.html(html_code, height=500, scrolling=False)
 
 # Tangkap file audio yang diunggah
-uploaded_file = st.file_uploader("Upload Audio File (via Streamlit)", type=["mp3"])
+uploaded_file = st.file_uploader("Upload Audio File", type=["mp3"])
 
 # Proses file audio
 if uploaded_file:
