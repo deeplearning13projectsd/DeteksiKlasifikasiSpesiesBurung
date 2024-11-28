@@ -138,3 +138,4 @@ if uploaded_file:
     
     # Tampilkan gambar hasil klasifikasi
     st.image(image_url, caption=f"Hasil klasifikasi untuk {file_name}", use_column_width=True)
+
