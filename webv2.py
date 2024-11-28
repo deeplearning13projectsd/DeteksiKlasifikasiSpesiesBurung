@@ -10,6 +10,11 @@ def get_image_url(file_name):
     else:
         return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/c.png"
 
+def get_accuracy():
+    # Misalnya, akurasi model dapat dihitung berdasarkan hasil uji
+    accuracy = 0.85  # Contoh nilai akurasi (85%)
+    return accuracy
+
 # Tambahkan latar belakang ke Streamlit
 def add_bg_from_url():
     st.markdown(
@@ -127,4 +132,10 @@ if uploaded_file:
     
     # Tampilkan gambar hasil klasifikasi
     st.image(image_url, caption=f"Hasil klasifikasi untuk {file_name}", use_column_width=True)
+
+    # Menampilkan akurasi
+    accuracy = get_accuracy()
+    
+    # Tampilkan akurasi menggunakan st.metric
+    st.metric(label="Akurasi Model", value=f"{accuracy * 100:.2f}%", delta=None)
 
