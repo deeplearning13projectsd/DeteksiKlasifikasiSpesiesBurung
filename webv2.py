@@ -104,13 +104,6 @@ html_code = """
     </div>
     <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
     
-    <h3>Yuk, Upload disini audionya</h3>
-    <div class="upload-form">
-        <form action="." method="post" enctype="multipart/form-data">
-            <input type="file" name="audio" accept="audio/*" required>
-            <input type="submit" value="Upload Audio">
-        </form>
-    </div>
     <div class="footer">
         <h4>© Developer: Kelompok 13 Deep Learning</h4>
     </div>
