@@ -124,6 +124,12 @@ uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
 
 # Proses file audio
 if uploaded_file:
+    # Menampilkan akurasi
+    accuracy = get_accuracy()
+    
+    # Tampilkan akurasi menggunakan st.metric
+    st.metric(label="Akurasi Model", value=f"{accuracy * 100:.2f}%", delta=None)
+    
     # Ambil nama file
     file_name = uploaded_file.name
     
@@ -132,10 +138,4 @@ if uploaded_file:
     
     # Tampilkan gambar hasil klasifikasi
     st.image(image_url, caption=f"Hasil klasifikasi untuk {file_name}", use_column_width=True)
-
-    # Menampilkan akurasi
-    accuracy = get_accuracy()
-    
-    # Tampilkan akurasi menggunakan st.metric
-    st.metric(label="Akurasi Model", value=f"{accuracy * 100:.2f}%", delta=None)
 
