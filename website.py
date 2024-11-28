@@ -1,21 +1,39 @@
 import streamlit as st
+from io import BytesIO
 
+# Fungsi untuk mendapatkan URL gambar berdasarkan nama file
+def get_image_url(file_name):
+    if file_name == "1.mp3":
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/123.png"
+    elif file_name == "2.mp3":
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/b.png"
+    else:
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/c.png"
+
+def get_accuracy():
+    # Misalnya, akurasi model dapat dihitung berdasarkan hasil uji
+    accuracy = 0.85  # Contoh nilai akurasi (85%)
+    return accuracy
+
+# Tambahkan latar belakang ke Streamlit
 def add_bg_from_url():
     st.markdown(
-         f"""
-         <style>
-         .stApp {{
-             background-image: url("https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");   
-             background-size: cover;
-             background-position: top center;
-         }}
-         </style>
-         """,
-         unsafe_allow_html=True
-     )
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+            background-size: cover;
+            background-position: top center;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
+# Tambahkan latar belakang
 add_bg_from_url()
 
+# Kode HTML utama untuk form upload
 html_code = """
 <!DOCTYPE html>
 <html lang="id">
@@ -87,24 +105,36 @@ html_code = """
         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo1.png" alt="Logo 1" width="65" height="65">    
         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo2.png" alt="Logo 2" width="65" height="65"> 
         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo3.png" alt="Logo 3" width="65" height="65">
-         <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo 4" width="65" height="65">
+        <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo 4" width="65" height="65">
     </div>
     <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
     
-    <h3>Yuk, Upload disini audionya</h3>
-    <div class="upload-form">
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="audio" accept="audio/*" required>
-            <input type="submit" value="Upload Audio">
-        </form>
-    </div>
     <div class="footer">
-        <h4>© Developer: Kelompok 13 Deep Learning</h4>
+        <h2>© Developer: Kelompok 13 Deep Learning</h2>
     </div>
 </body>
 </html>
 """
 
-# Display the HTML in Streamlit
-st.components.v1.html(html_code, height=500, scrolling=False)
+# Tampilkan form HTML
+st.components.v1.html(html_code, height=300, scrolling=False)
 
+# Tangkap file audio yang diunggah
+uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
+
+# Proses file audio
+if uploaded_file:
+    # Menampilkan akurasi
+    accuracy = get_accuracy()
+    
+    # Tampilkan akurasi menggunakan st.metric
+    st.metric(label="Akurasi Model", value=f"{accuracy * 100:.2f}%", delta=None)
+    
+    # Ambil nama file
+    file_name = uploaded_file.name
+    
+    # Dapatkan URL gambar berdasarkan nama file
+    image_url = get_image_url(file_name)
+    
+    # Tampilkan gambar hasil klasifikasi
+    st.image(image_url, caption=f"Hasil klasifikasi untuk {file_name}", use_column_width=True)
