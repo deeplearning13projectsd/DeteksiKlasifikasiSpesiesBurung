@@ -17,15 +17,12 @@ def add_bg_from_url():
 
 add_bg_from_url()
 
-# Function to create HTML content based on language
 def create_html_content(language):
     if language == "id":
-        # Content for Indonesian language
         title = "Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas"
         upload_text = "Yuk, Upload disini audionya"
         footer_text = "© Developer: Kelompok 13 Deep Learning"
     else:
-        # Content for English language
         title = "Implementation of ConvNeXt Transfer Learning Architecture for Bird Sound Classification in Way Kambas National Park"
         upload_text = "Upload your audio here"
         footer_text = "© Developer: Deep Learning Group 13"
@@ -40,7 +37,7 @@ def create_html_content(language):
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
         <style>
-            body {
+            body {{
                 font-family: 'Roboto', sans-serif;
                 margin: 0;
                 display: flex;
@@ -49,50 +46,43 @@ def create_html_content(language):
                 justify-content: center;
                 height: 100vh;
                 color: #fff;
-                background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent overlay */
-            }
-
-            h1, h3 {
+                background-color: rgba(0, 0, 0, 0.7);
+            }}
+            h1, h3 {{
                 text-align: center;
                 margin-bottom: 20px;
-            }
-
-            .upload-form {
+            }}
+            .upload-form {{
                 background-color: rgba(255, 255, 255, 0.8);
                 padding: 20px;
                 border-radius: 10px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            }
-
-            input[type="file"], input[type="submit"] {
+            }}
+            input[type="file"], input[type="submit"] {{
                 padding: 10px;
                 border-radius: 5px;
                 border: none;
                 margin: 5px 0;
-            }
-
-            input[type="submit"] {
+            }}
+            input[type="submit"] {{
                 background-color: #007bff;
                 color: #fff;
                 cursor: pointer;
-            }
-
-            input[type="submit"]:hover {
+            }}
+            input[type="submit"]:hover {{
                 background-color: #0056b3;
-            }
-
-            .logo-container {
+            }}
+            .logo-container {{
                 display: flex;
                 justify-content: space-around;
                 margin-bottom: 20px;
-            }
-
-            .logo {
+            }}
+            .logo {{
                 width: 65px;
                 height: 65px;
                 border-radius: 5px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            }
+            }}
         </style>
     </head>
     <body>
