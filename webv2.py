@@ -4,7 +4,7 @@ from io import BytesIO
 # Fungsi untuk mendapatkan URL gambar berdasarkan nama file
 def get_image_url(file_name):
     if file_name == "1.mp3":
-        return "https://github.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/blob/main/Deployment/asset/123.png"
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/123.png"
     elif file_name == "2.mp3":
         return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/b.png"
     else:
