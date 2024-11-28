@@ -114,7 +114,7 @@ html_code = """
 """
 
 # Tampilkan form HTML
-st.components.v1.html(html_code, height=360, scrolling=False)
+st.components.v1.html(html_code, height=300, scrolling=False)
 
 # Tangkap file audio yang diunggah
 uploaded_file = st.file_uploader(" ", type=["mp3"])
