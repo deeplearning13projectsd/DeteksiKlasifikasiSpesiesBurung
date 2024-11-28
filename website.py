@@ -109,10 +109,6 @@ html_code = """
     </div>
     <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
     
-    <div class="footer">
-        <h2>© Developer: Kelompok 13 Deep Learning</h2>
-        <h4>Version Beta 1.0.4 </h4>
-    </div>
 </body>
 </html>
 """
@@ -139,3 +135,12 @@ if uploaded_file:
     
     # Tampilkan gambar hasil klasifikasi
     st.image(image_url, caption=f"Hasil klasifikasi untuk {file_name}", use_column_width=False)
+
+
+# Menggunakan st.components.v1.html() untuk menampilkan teks dengan kontrol lebih banyak
+html_code = """<div class="footer">
+                <h2>© Developer: Kelompok 13 Deep Learning</h2>
+                <h4>Version Beta 1.0.4 </h4>
+            </div>"""
+st.components.v1.html(html_code, height=50)
+
