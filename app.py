@@ -157,4 +157,4 @@ html_code = """<div class="footer" style="text-align: center; color: white;">
     <h2>Version Beta 1.0.4</h2>
 </div>
 """
-st.components.v1.html(html_code, height=50)
+st.components.v1.html(html_code, height=80)
