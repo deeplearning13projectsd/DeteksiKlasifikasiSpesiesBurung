@@ -1,18 +1,33 @@
 import streamlit as st
 from io import BytesIO
+#filename-> nantinya hasil output kelas dari prediksi model(ex:1,2,3...)
 
 # Fungsi untuk mendapatkan URL gambar berdasarkan nama file
 def get_image_url(file_name):
     if file_name == "1.mp3":
-        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/123.png"
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/1.png"
     elif file_name == "2.mp3":
-        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/b.png"
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/2.png"
+    elif file_name == "3.mp3":
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/3.png"
+    elif file_name == "4.mp3":
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/4.png"
+    elif file_name == "5.mp3":
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/5.png"
+    elif file_name == "6.mp3":
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/6.png"
+    elif file_name == "7.mp3":
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/7.png"
+    elif file_name == "8.mp3":
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/8.png"
+    elif file_name == "9.mp3":
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/9.png"
     else:
-        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/c.png"
+        return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/10.png"
 
 def get_accuracy():
     # Misalnya, akurasi model dapat dihitung berdasarkan hasil uji
-    accuracy = 0.78584  # Contoh nilai akurasi (85%)
+    accuracy = 0.78584  # akurasi nanti dari output model dirunn (tinggal modifikasi
     return accuracy
 
 # Tambahkan latar belakang ke Streamlit
