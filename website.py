@@ -27,7 +27,7 @@ def get_image_url(file_name):
 
 def get_accuracy():
     # Misalnya, akurasi model dapat dihitung berdasarkan hasil uji
-    accuracy = 0.78584  # akurasi nanti dari output model dirunn (tinggal modifikasi
+    accuracy = 0.470  # akurasi nanti dari output model dirunn (tinggal modifikasi
     return accuracy
 
 # Tambahkan latar belakang ke Streamlit
@@ -129,7 +129,7 @@ html_code = """
 """
 
 # Tampilkan form HTML
-st.components.v1.html(html_code, height=380, scrolling=False)
+st.components.v1.html(html_code, height=400, scrolling=False)
 
 # Tangkap file audio yang diunggah
 uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
