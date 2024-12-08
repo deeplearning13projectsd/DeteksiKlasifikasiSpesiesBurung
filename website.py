@@ -155,6 +155,7 @@ if uploaded_file:
 # Menggunakan st.components.v1.html() untuk menampilkan teks dengan kontrol lebih banyak
 html_code = """<div class="footer" style="text-align: center; color: white;">
     <h2>Version Beta 1.0.4</h2>
+    <h3>On Progress Deployment</h3>
 </div>
 """
 st.components.v1.html(html_code, height=50)
