@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 # Load pre-trained model
-MODEL_PATH = "jfgkkh.keras"
+MODEL_PATH = "https://drive.google.com/file/d/1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq/view?usp=sharing"
 model = load_model(MODEL_PATH)
 
 # Class mapping
