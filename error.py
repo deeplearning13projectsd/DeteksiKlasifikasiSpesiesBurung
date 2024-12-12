@@ -116,13 +116,13 @@ if uploaded_file:
     st.metric(label="Akurasi Prediksi", value=f"{akurasi:.2f}%")
 
     # Menampilkan gambar sesuai kelas
-    if predicted_class == 0:
+    if kelas == 0:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/1.png"
-    elif predicted_class == 1:
+    elif kelas == 1:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/2.png"
-    elif predicted_class == 2:
+    elif kelas == 2:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/3.png"
-    elif predicted_class == 3:
+    elif kelas == 3:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/4.png"
     else:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/5.png"
