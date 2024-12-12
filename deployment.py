@@ -36,8 +36,8 @@ add_custom_header()
 
 
 # Konfigurasi Kaggle API menggunakan secrets
-os.environ["KAGGLE_USERNAME"] = st.secrets["kaggle"]["username"]
-os.environ["KAGGLE_KEY"] = st.secrets["kaggle"]["key"]
+os.environ["KAGGLE_USERNAME"] = st.secrets["kaggle"]["alberanalafean"]
+os.environ["KAGGLE_KEY"] = st.secrets["kaggle"]["52f94707db0dae58fdc05136233d5121"]
 
 # Inisialisasi Kaggle API
 def initialize_kaggle_api():
