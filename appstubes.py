@@ -6,8 +6,7 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 from pydub import AudioSegment
 
-# Ambil nama file
-audio = uploaded_file.name
+
 
 
 # Tambahkan latar belakang ke Streamlit
@@ -113,7 +112,8 @@ st.components.v1.html(html_code, height=400, scrolling=False)
 
 # Tangkap file audio yang diunggah
 uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
-
+# Ambil nama file
+audio = uploaded_file.name
 
 # Mengubah file input menjadi AudioSegment
 def convert_to_wav(input_file, output_file):
