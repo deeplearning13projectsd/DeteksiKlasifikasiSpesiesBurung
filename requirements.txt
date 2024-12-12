@@ -4,3 +4,4 @@ pydub
 matplotlib
 keras
 gdown
+kaggle
