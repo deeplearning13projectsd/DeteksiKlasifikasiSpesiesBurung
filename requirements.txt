@@ -2,3 +2,6 @@ streamlit
 tensorflow
 pydub
 matplotlib.pyplot
+PIL
+numpy
+IO
