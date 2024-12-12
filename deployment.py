@@ -180,14 +180,14 @@ def add_custom_footer():
     <html>
     <body>
         <div class="footer" style="text-align: center; margin-top: 30px; padding: 10px">
-            <h4 style="margin: 0;">© Developer: Kelompok 13 Deep Learning</h4>
             <h5 style="margin: 5px 0;">AVCLA</h5>
-            <p style="margin: 5px 0;">AVCLA, merupakan sebuah website dalam mendeteksi klasifikasi burung di kawasan Taman Nasional Way Kambas. Website ini mendeteksi klasifikasi pada 10 spesies burung dengan memanfaatkan deep learning menggunakan transfer learning dengan arsitektur Convnext Type Base</p>
-        </div>
+            <p style="margin: 5px 0;">AVCLA, merupakan sebuah website dalam mendeteksi klasifikasi burung di kawasan Taman Nasional Way Kambas. Website ini bisa mendeteksi klasifikasi pada 10 spesies burung, dengan memanfaatkan deep learning menggunakan transfer learning dengan arsitektur Convnext Type Base. Website ini bisa memprediksi spesies burung berdasarkan suara. Model ini dibangun dalam memenuhi Case Based Learning pada matakuliah SD4102Deep Learning di Program Studi Sains Data, Fakultas Sains, Institut Teknologi Sumatera</p>
+            <h5 style="margin: 5px 0;">Version 1.2.1 2024</h5>
+            <h4 style="margin: 0;">© Developer: Kelompok 13 Deep Learning</h4>
+      </div>
     </body>
     </html>
     """
     st.markdown(html_code, unsafe_allow_html=True)
 
 add_custom_footer()
-
