@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import gdown
 
+
 def add_custom_header():
     html_code = """
     <html>
@@ -32,6 +33,17 @@ def add_custom_header():
     """
     st.markdown(html_code, unsafe_allow_html=True)
 add_custom_header()
+
+
+# Konfigurasi Kaggle API menggunakan secrets
+os.environ["KAGGLE_USERNAME"] = st.secrets["kaggle"]["username"]
+os.environ["KAGGLE_KEY"] = st.secrets["kaggle"]["key"]
+
+# Inisialisasi Kaggle API
+def initialize_kaggle_api():
+    api = KaggleApi()
+    api.authenticate()
+    return api
 
 
 # Unduh model yang telah dilatih
