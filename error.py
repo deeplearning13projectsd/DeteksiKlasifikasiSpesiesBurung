@@ -5,22 +5,22 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import io
 from pydub import AudioSegment
+from pydub.utils import which
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import gdown
 
 
+# Pastikan ffmpeg ditemukan oleh pydub
+AudioSegment.ffmpeg = which("ffmpeg")
+
+# Unduh model yang telah dilatih
 url = 'https://drive.google.com/uc?id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq' 
 output_path = 'convnextaugmentasiepochs50.keras'
 gdown.download(url, output_path, quiet=False)
 model = load_model(output_path)
 
-
-
-
-
-
-# Class mapping
+# Kelas untuk klasifikasi
 class_indices = {
     'Cacomantis Merulinus': 0,
     'Culicicapa Ceylonensis': 1,
@@ -35,13 +35,9 @@ class_indices = {
 }
 class_labels = {v: k for k, v in class_indices.items()}
 
-from pydub import AudioSegment
-import numpy as np
-from io import BytesIO
-
 def preprocess_audio(file):
     # Membaca file audio dari inputan
-    audio = AudioSegment.from_file(BytesIO(file.read()))
+    audio = AudioSegment.from_file(BytesIO(file.read()))  # Membaca file audio dari memori
     
     # Setel menjadi mono (1 channel) dan frame rate menjadi 16000
     audio = audio.set_channels(1).set_frame_rate(16000)
@@ -67,8 +63,8 @@ def preprocess_audio(file):
     
     return high_energy_audio
 
-
 def audio_to_melspectrogram(audio):
+    # Mengubah audio menjadi Mel-spectrogram menggunakan librosa
     samples = np.array(audio.get_array_of_samples())
     sr = audio.frame_rate
     melspec = librosa.feature.melspectrogram(
@@ -76,6 +72,7 @@ def audio_to_melspectrogram(audio):
     )
     melspec_db = librosa.power_to_db(melspec, ref=np.max)
 
+    # Membuat visualisasi dari Mel-spectrogram
     fig = plt.figure(figsize=(5, 5))
     plt.axis('off')
     plt.imshow(melspec_db, aspect='auto', origin='lower', cmap='inferno')
@@ -87,13 +84,14 @@ def audio_to_melspectrogram(audio):
     return buf
 
 def prepare_image(image_buf):
+    # Menyiapkan gambar untuk input model
     img = image.load_img(image_buf, target_size=(224, 224))
     img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
     img_array /= 255.0
     return img_array
 
-# Background HTML
+# Background HTML untuk Streamlit
 def add_bg_from_url():
     st.markdown(
         f"""
@@ -118,24 +116,26 @@ st.markdown("### Kelompok 13 Deep Learning")
 uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
 
 if uploaded_file:
+    # Proses file audio
     audio = preprocess_audio(uploaded_file)
     spectrogram_buf = audio_to_melspectrogram(audio)
 
+    # Menyiapkan gambar untuk input model
     img_array = prepare_image(spectrogram_buf)
 
-    # Predict using model
+    # Prediksi menggunakan model
     predicted_probabilities = model.predict(img_array, verbose=0)
     predicted_class = np.argmax(predicted_probabilities, axis=1)[0]
 
-    # Retrieve class and accuracy
+    # Ambil kelas dan akurasi
     kelas = class_labels.get(predicted_class, "Unknown")
     akurasi = predicted_probabilities[0][predicted_class] * 100
 
-    # Display results
+    # Menampilkan hasil prediksi
     st.metric(label="Kelas Terprediksi", value=kelas)
     st.metric(label="Akurasi Prediksi", value=f"{akurasi:.2f}%")
 
-    # Image URL display logic
+    # Menampilkan gambar sesuai kelas
     if predicted_class == 0:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/1.png"
     elif predicted_class == 1:
