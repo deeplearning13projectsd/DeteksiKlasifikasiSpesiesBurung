@@ -99,7 +99,7 @@ if uploaded_file:
         img_array = prepare_image_for_model(mel_image_path)
 
         # Load model
-        model_path = 'https://drive.google.com/file/d/1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq/view?usp=sharing'5'  # Ganti dengan path model Anda
+        model_path = 'https://drive.google.com/file/d/1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq/view?usp=sharing' #5'  # Ganti dengan path model Anda
         model = load_model(model_path)
 
         # Klasifikasi
