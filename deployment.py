@@ -35,16 +35,6 @@ def add_custom_header():
 add_custom_header()
 
 
-# Konfigurasi Kaggle API menggunakan secrets
-os.environ["KAGGLE_USERNAME"] = st.secrets["kaggle"]["username"]
-os.environ["KAGGLE_KEY"] = st.secrets["kaggle"]["key"]
-
-# Inisialisasi Kaggle API
-def initialize_kaggle_api():
-    api = KaggleApi()
-    api.authenticate()
-    return api
-
 
 # Unduh model yang telah dilatih
 #gdown.download('https://drive.google.com/uc?export=download&id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq', output_path, quiet=False)
