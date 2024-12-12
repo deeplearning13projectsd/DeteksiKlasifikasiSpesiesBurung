@@ -9,8 +9,7 @@ from pydub.utils import which
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import gdown
-
-
+from PIL import Image
 
 
 # Unduh model yang telah dilatih
@@ -34,11 +33,8 @@ class_indices = {
 }
 class_labels = {v: k for k, v in class_indices.items()}
 
-import librosa
-import numpy as np
 
-
-
+# Convert audio to Mel-spectrogram
 def audio_to_melspectrogram(file):
     # Mengubah audio menjadi Mel-spectrogram menggunakan librosa
     samples = np.array(file.get_array_of_samples())
@@ -59,12 +55,20 @@ def audio_to_melspectrogram(file):
     buf.seek(0)
     return buf
 
+# Prepare image from buffer
 def prepare_image(image_buf):
-    # Menyiapkan gambar untuk input model
-    img = image.load_img(image_buf, target_size=(224, 224))
-    img_array = image.img_to_array(img)
+    # Load image from buffer
+    image_pil = Image.open(image_buf)
+    
+    # Resize and prepare image for the model
+    img = image_pil.resize((224, 224))  # Resize to match model input size
+    img_array = np.array(img)
+    
+    # Normalize the image (make sure it's in float32 format)
+    img_array = img_array.astype('float32') / 255.0
+
+    # Reshape for model input (batch size, height, width, channels)
     img_array = np.expand_dims(img_array, axis=0)
-    img_array /= 255.0
     return img_array
 
 # Background HTML untuk Streamlit
@@ -128,3 +132,4 @@ if uploaded_file:
 # Footer
 st.markdown("### Version Beta 1.0.4")
 st.markdown("### On Progress Deployment")
+
