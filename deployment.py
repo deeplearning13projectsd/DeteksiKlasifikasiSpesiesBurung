@@ -178,7 +178,8 @@ def add_custom_footer():
     <body>
         <div class="footer" style="text-align: center; margin-top: 30px; padding: 10px">
             <h4 style="margin: 0;">© Developer: Kelompok 13 Deep Learning</h4>
-            <h5 style="margin: 5px 0;">Version 1.2.1</h5>
+            <h5 style="margin: 5px 0;">AVCLA</h5>
+            <p style="margin: 5px 0;">AVCLA, merupakan sebuah website dalam mendeteksi klasifikasi burung di kawasan Taman Nasional Way Kambas. Website ini mendeteksi klasifikasi pada 10 spesies burung dengan memanfaatkan deep learning menggunakan transfer learning dengan arsitektur Convnext Type Base</p>
         </div>
     </body>
     </html>
