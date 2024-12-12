@@ -40,22 +40,28 @@ import os
 import gdown
 from tensorflow.keras.models import load_model
 
-# Tentukan lokasi model dan ID file Google Drive
-model_path = './models/convnextaugmentasiepochs50.keras'
-google_drive_file_id = '1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq'  # ID file dari link yang Anda berikan
-google_drive_url = f'https://drive.google.com/uc?id={google_drive_file_id}'
+# Define model download URL and model path
+MODEL_URL = 'https://drive.google.com/uc?id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq'  # Replace with your actual Google Drive file ID
+MODEL_DIR = "./models/"
+MODEL_FILE = "convnextaugmentasiepochs50.keras"
+model_path = os.path.join(MODEL_DIR, MODEL_FILE)
+
+# Function to download the model if it doesn't exist locally
+def download_model():
+    if not os.path.exists(MODEL_DIR):
+        os.makedirs(MODEL_DIR)  # Create model directory if it doesn't exist
+    if not os.path.exists(model_path):  # Check if the model already exists
+        st.info("Downloading model...")
+        gdown.download(MODEL_URL, model_path, quiet=False)
+        st.success("Model downloaded successfully!")
+    else:
+        st.info("Model already exists. Skipping download.")
+
+# Download model if necessary
+download_model()
+
+# Load the model
 model = load_model(model_path)
-
-# Model siap digunakan
-
-
-
-
-
-
-
-
-
 
 
 
