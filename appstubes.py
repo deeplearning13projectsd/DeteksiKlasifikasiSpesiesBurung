@@ -278,7 +278,7 @@ if uploaded_file:
     st.metric(label="Akurasi Model ConvNeXt type base", value=f"{accuracy:.4f}", delta=None)
     
     # Ambil nama file
-    audio = uploaded_file.name
+    predict = uploaded_file.name
     
     # Dapatkan URL gambar berdasarkan nama file
     image_url = prediksimodel(predict)
