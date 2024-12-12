@@ -4,17 +4,103 @@ from io import BytesIO
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import numpy as np
-#inputan nama var audio
+from pydub import AudioSegment
 
-#samakan frekuensi
-#potong 5 detik, pada energi terbaik
-#mels spectro
-#mels spcetro ini jadi img_array yg udh generator
+# Mengubah file input menjadi AudioSegment
+def convert_to_wav(input_file, output_file):
+    try:
+        # Membaca file input
+        audio = AudioSegment.from_file(input_file)
 
-#PROSES GAMBAR MELS
-#setelab diproses gambar melas
-#panggil jadi:
-#img_array=..................
+        # Mengubah audio ke mono dan mengatur frame rate ke 16000
+        audiovgk = audio.set_channels(1).set_frame_rate(16000)
+
+        # Menyimpan hasilnya ke format .wav
+        audiovgk.export(durasi, format="wav")
+        print(f"File berhasil disimpan sebagai: {output_file}")
+
+    except Exception as e:
+        print(f"Terjadi kesalahan: {e}")
+
+# Contoh penggunaan
+input_file = audio  
+durasi= "output_audio.wav"
+convert_to_wav(input_file, durasi)
+
+
+
+from pydub import AudioSegment
+
+def segment(input_file, output_file, duration_ms=5000):
+    try:
+        # Membaca file input
+        audio = AudioSegment.from_file(input_file)
+
+        # Membagi audio menjadi potongan-potongan kecil
+        chunk_size = 100  # dalam milidetik
+        chunks = [audio[i:i + chunk_size] for i in range(0, len(audio), chunk_size)]
+
+        # Menghitung energi setiap potongan
+        energies = [chunk.rms for chunk in chunks]
+
+        # Menentukan indeks potongan dengan energi tertinggi
+        max_energy_index = max(range(len(energies)), key=energies.__getitem__)
+
+        # Menentukan awal dan akhir segmen berdurasi 5 detik
+        start_index = max(0, max_energy_index - duration_ms // (2 * chunk_size))
+        end_index = min(len(chunks), start_index + duration_ms // chunk_size)
+
+        # Menggabungkan kembali potongan-potongan yang dipilih
+        high_energy_segment = sum(chunks[start_index:end_index])
+
+        # Menyimpan segmen ke file output
+        high_energy_segment.export(output_file, format="wav")
+        #print(f"Segmen dengan energi tertinggi berhasil disimpan sebagai: {output_file}")
+
+    except Exception as e:
+        print(f"Terjadi kesalahan: {e}")
+      
+segment(durasi, segment)
+
+
+#SEGEMNT> BRY KESINI
+#melS SPECTRO
+def create_mel_spectrogram(segment, gambar, sr=16000, n_fft=1024, hop_length=512, n_mels=128):
+    try:
+        # Load file audio
+        signal, sr = librosa.load(segment, sr=sr)
+
+        # Buat Mel-spektrogram
+        mel_spectrogram = librosa.feature.melspectrogram(
+            y=signal, sr=sr, n_fft=n_fft, hop_length=hop_length, n_mels=n_mels
+        )
+
+        # Konversi ke dB
+        mel_spectrogram_db = librosa.power_to_db(mel_spectrogram, ref=np.max)
+
+        # Plot Mel-spektrogram
+        # Plot Mel-spektrogram
+        plt.figure(figsize=(10, 4))
+        librosa.display.specshow(
+            mel_spectrogram_db,
+            sr=sr,
+            hop_length=hop_length,
+            x_axis='time',
+            y_axis='mel',
+            cmap='magma'
+        )
+        plt.axis('off')  # Menghapus axis dan elemen lainnya
+        plt.tight_layout()
+
+        # Simpan gambar
+        plt.savefig(gambar)
+        plt.close()
+
+
+img = image.load_img(gambar target_size=(224, 224))  # Sesuaikan target_size sesuai input model
+img_array = image.img_to_array(img)
+img_array = np.expand_dims(img_array, axis=0)  # Menambahkan dimensi batch
+img_array /= 255.0  
 
 
 #MODEL
