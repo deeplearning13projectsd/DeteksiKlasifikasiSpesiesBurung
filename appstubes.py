@@ -6,6 +6,9 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 from pydub import AudioSegment
 
+# Ambil nama file
+audio = uploaded_file.name
+
 
 # Tambahkan latar belakang ke Streamlit
 def add_bg_from_url():
@@ -281,8 +284,6 @@ accuracy = accuracy
     # Tampilkan akurasi menggunakan st.metric
 st.metric(label="Akurasi Model ConvNeXt type base", value=f"{accuracy:.4f}", delta=None)
     
-# Ambil nama file
-audio = uploaded_file.name
     
     # Dapatkan URL gambar berdasarkan nama file
 image_url = prediksimodel(predict)
