@@ -34,7 +34,7 @@ def add_custom_header():
     st.markdown(html_code, unsafe_allow_html=True)
 add_custom_header()
 
-MODEL_DIR = "./models/"
+MODEL_DIR = "/workspaces/DeteksiKlasifikasiSpesiesBurung/models/"
 MODEL_FILE = "convnextaugmentasiepochs50.keras"
 model_path = os.path.join(MODEL_DIR, MODEL_FILE)
 model = load_model(model_path)
