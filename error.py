@@ -10,9 +10,6 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import gdown
 
-
-
-
 # Unduh model yang telah dilatih
 url = 'https://drive.google.com/uc?id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq' 
 output_path = 'convnextaugmentasiepochs50.keras'
@@ -34,15 +31,15 @@ class_indices = {
 }
 class_labels = {v: k for k, v in class_indices.items()}
 
-import librosa
-import numpy as np
-
+# Fungsi untuk memproses file audio
 def preprocess_audio(file):
-    # Membaca file audio menggunakan librosa (menggunakan librosa.load untuk membaca file)
-    audio, sr = librosa.load(file, sr=16000, mono=True)  # Setel sample rate ke 16000 dan mono
+    # Membaca file audio menggunakan pydub (karena kita menggunakan mp3)
+    audio = AudioSegment.from_mp3(file)
+    audio_samples = np.array(audio.get_array_of_samples())
+    sr = audio.frame_rate  # Sample rate dari file audio
     
     # Menghitung energi audio (energi rata-rata per frame)
-    energy = np.square(audio).mean(axis=0)
+    energy = np.square(audio_samples).mean(axis=0)
     
     # Tentukan ambang batas energi untuk mendeteksi segmen dengan energi tinggi
     threshold = np.percentile(energy, 90)  # Ambang batas di persentil 90 untuk energi tinggi
@@ -55,20 +52,16 @@ def preprocess_audio(file):
     
     # Ambil 5 detik dari segmen dengan energi tinggi
     if len(high_energy_frames) > segment_duration:
-        high_energy_audio = audio[high_energy_frames[0]:high_energy_frames[segment_duration]]
+        high_energy_audio = audio_samples[high_energy_frames[0]:high_energy_frames[segment_duration]]
     else:
-        high_energy_audio = audio[:segment_duration]  # Jika kurang dari 5 detik, ambil sisa audio
+        high_energy_audio = audio_samples[:segment_duration]  # Jika kurang dari 5 detik, ambil sisa audio
     
     return high_energy_audio, sr
 
-
-def audio_to_melspectrogram(high_energy_audio):
+# Fungsi untuk mengonversi audio menjadi Mel-spectrogram
+def audio_to_melspectrogram(high_energy_audio, sr):
     # Mengubah audio menjadi Mel-spectrogram menggunakan librosa
-    samples = np.array(high_energy_audio.get_array_of_samples())
-    sr = high_energy_audio.frame_rate
-    melspec = librosa.feature.melspectrogram(
-        y=samples.astype(float), sr=sr, n_fft=1024, hop_length=512, n_mels=128
-    )
+    melspec = librosa.feature.melspectrogram(y=high_energy_audio, sr=sr, n_fft=1024, hop_length=512, n_mels=128)
     melspec_db = librosa.power_to_db(melspec, ref=np.max)
 
     # Membuat visualisasi dari Mel-spectrogram
@@ -82,6 +75,7 @@ def audio_to_melspectrogram(high_energy_audio):
     buf.seek(0)
     return buf
 
+# Fungsi untuk menyiapkan gambar untuk input model
 def prepare_image(image_buf):
     # Menyiapkan gambar untuk input model
     img = image.load_img(image_buf, target_size=(224, 224))
@@ -90,7 +84,7 @@ def prepare_image(image_buf):
     img_array /= 255.0
     return img_array
 
-# Background HTML untuk Streamlit
+# Fungsi untuk menambahkan background ke halaman Streamlit
 def add_bg_from_url():
     st.markdown(
         f"""
@@ -105,19 +99,22 @@ def add_bg_from_url():
         unsafe_allow_html=True
     )
 
+# Menambahkan background
 add_bg_from_url()
 
 # Streamlit app header
 st.title("Implementasi Model Transfer Learning untuk Klasifikasi Suara Burung")
 st.markdown("### Kelompok 13 Deep Learning")
 
-# File uploader
+# File uploader untuk audio
 uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
 
 if uploaded_file:
     # Proses file audio
-    audio = preprocess_audio(uploaded_file)
-    spectrogram_buf = audio_to_melspectrogram(audio)
+    high_energy_audio, sr = preprocess_audio(uploaded_file)
+    
+    # Konversi audio menjadi Mel-spectrogram
+    spectrogram_buf = audio_to_melspectrogram(high_energy_audio, sr)
 
     # Menyiapkan gambar untuk input model
     img_array = prepare_image(spectrogram_buf)
@@ -135,13 +132,13 @@ if uploaded_file:
     st.metric(label="Akurasi Prediksi", value=f"{akurasi:.2f}%")
 
     # Menampilkan gambar sesuai kelas
-    if kelas == 0:
+    if kelas == "Cacomantis Merulinus":
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/1.png"
-    elif kelas == 1:
+    elif kelas == "Culicicapa Ceylonensis":
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/2.png"
-    elif kelas == 2:
+    elif kelas == "Geopelia Striata":
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/3.png"
-    elif kelas == 3:
+    elif kelas == "Halcyon Smyrnensis":
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/4.png"
     else:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/5.png"
@@ -151,3 +148,4 @@ if uploaded_file:
 # Footer
 st.markdown("### Version Beta 1.0.4")
 st.markdown("### On Progress Deployment")
+
