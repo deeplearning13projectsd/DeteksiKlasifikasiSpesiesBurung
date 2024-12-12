@@ -65,6 +65,12 @@ segment(durasi, segment)
 
 #SEGEMNT> BRY KESINI
 #melS SPECTRO
+import librosa
+import librosa.display
+import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
+
 def create_mel_spectrogram(segment, gambar, sr=16000, n_fft=1024, hop_length=512, n_mels=128):
     try:
         # Load file audio
@@ -79,7 +85,6 @@ def create_mel_spectrogram(segment, gambar, sr=16000, n_fft=1024, hop_length=512
         mel_spectrogram_db = librosa.power_to_db(mel_spectrogram, ref=np.max)
 
         # Plot Mel-spektrogram
-        # Plot Mel-spektrogram
         plt.figure(figsize=(10, 4))
         librosa.display.specshow(
             mel_spectrogram_db,
@@ -92,9 +97,21 @@ def create_mel_spectrogram(segment, gambar, sr=16000, n_fft=1024, hop_length=512
         plt.axis('off')  # Menghapus axis dan elemen lainnya
         plt.tight_layout()
 
-        # Simpan gambar
-        plt.savefig(gambar)
+        # Simpan gambar sementara
+        temp_gambar = "temp_image.png"
+        plt.savefig(temp_gambar, bbox_inches='tight', pad_inches=0)
         plt.close()
+
+        # Buka gambar sementara dan ubah ukurannya
+        with Image.open(temp_gambar) as img:
+            img_resized = img.resize((224, 224), Image.ANTIALIAS)
+            img_resized.save(gambar)
+
+        print(f"Mel-spektrogram berhasil disimpan di {gambar}")
+
+    except Exception as e:
+        print(f"Terjadi kesalahan: {e}")
+
 
 
 img = image.load_img(gambar target_size=(224, 224))  # Sesuaikan target_size sesuai input model
