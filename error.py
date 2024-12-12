@@ -9,7 +9,8 @@ from pydub.utils import which
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import gdown
-from PIL import Image
+
+
 
 
 # Unduh model yang telah dilatih
@@ -33,14 +34,40 @@ class_indices = {
 }
 class_labels = {v: k for k, v in class_indices.items()}
 
+import librosa
+import numpy as np
 
-# Convert audio to Mel-spectrogram
-def audio_to_melspectrogram(file):
+def preprocess_audio(file):
+    # Membaca file audio menggunakan librosa (menggunakan librosa.load untuk membaca file)
+    audio, sr = librosa.load(file, sr=16000, mono=True)  # Setel sample rate ke 16000 dan mono
+    
+    # Menghitung energi audio (energi rata-rata per frame)
+    energy = np.square(audio).mean(axis=0)
+    
+    # Tentukan ambang batas energi untuk mendeteksi segmen dengan energi tinggi
+    threshold = np.percentile(energy, 90)  # Ambang batas di persentil 90 untuk energi tinggi
+    
+    # Ambil indeks frame dengan energi tinggi
+    high_energy_frames = np.where(energy > threshold)[0]
+    
+    # Tentukan durasi 5 detik (80.000 frame untuk 16000 Hz)
+    segment_duration = 16000 * 5  # 5 detik
+    
+    # Ambil 5 detik dari segmen dengan energi tinggi
+    if len(high_energy_frames) > segment_duration:
+        high_energy_audio = audio[high_energy_frames[0]:high_energy_frames[segment_duration]]
+    else:
+        high_energy_audio = audio[:segment_duration]  # Jika kurang dari 5 detik, ambil sisa audio
+    
+    return high_energy_audio, sr
+
+
+def audio_to_melspectrogram(audio):
     # Mengubah audio menjadi Mel-spectrogram menggunakan librosa
-    samples = np.array(file.get_array_of_samples())
-    sr = file.frame_rate
+    samples = np.array(audio.get_array_of_samples())
+    sr = audio.frame_rate
     melspec = librosa.feature.melspectrogram(
-        y=samples.astype(float), sr=16000, n_fft=1024, hop_length=512, n_mels=128
+        y=samples.astype(float), sr=sr, n_fft=1024, hop_length=512, n_mels=128
     )
     melspec_db = librosa.power_to_db(melspec, ref=np.max)
 
@@ -55,20 +82,12 @@ def audio_to_melspectrogram(file):
     buf.seek(0)
     return buf
 
-# Prepare image from buffer
 def prepare_image(image_buf):
-    # Load image from buffer
-    image_pil = Image.open(image_buf)
-    
-    # Resize and prepare image for the model
-    img = image_pil.resize((224, 224))  # Resize to match model input size
-    img_array = np.array(img)
-    
-    # Normalize the image (make sure it's in float32 format)
-    img_array = img_array.astype('float32') / 255.0
-
-    # Reshape for model input (batch size, height, width, channels)
+    # Menyiapkan gambar untuk input model
+    img = image.load_img(image_buf, target_size=(224, 224))
+    img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
+    img_array /= 255.0
     return img_array
 
 # Background HTML untuk Streamlit
@@ -97,7 +116,8 @@ uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
 
 if uploaded_file:
     # Proses file audio
-    spectrogram_buf = audio_to_melspectrogram(uploaded_file)
+    audio = preprocess_audio(uploaded_file)
+    spectrogram_buf = audio_to_melspectrogram(audio)
 
     # Menyiapkan gambar untuk input model
     img_array = prepare_image(spectrogram_buf)
@@ -131,4 +151,3 @@ if uploaded_file:
 # Footer
 st.markdown("### Version Beta 1.0.4")
 st.markdown("### On Progress Deployment")
-
