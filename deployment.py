@@ -78,6 +78,12 @@ def initialize_kaggle_api():
     api = KaggleApi()
     api.authenticate()
     return api
+# Validasi apakah secrets tersedia
+if "kaggle" in st.secrets:
+    os.environ["KAGGLE_USERNAME"] = st.secrets["kaggle"].get("KAGGLE_USERNAME")
+    os.environ["KAGGLE_KEY"] = st.secrets["kaggle"].get("KAGGLE_KEY")
+else:
+    st.error("Konfigurasi API Kaggle tidak ditemukan! Pastikan `secrets.toml` sudah diatur dengan benar.")
 
 
 
