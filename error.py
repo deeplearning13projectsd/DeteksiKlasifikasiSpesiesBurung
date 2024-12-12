@@ -35,9 +35,10 @@ class_indices = {
 }
 class_labels = {v: k for k, v in class_indices.items()}
 
-# Helper functions
+from io import BytesIO
+
 def preprocess_audio(file):
-    audio = AudioSegment.from_file(file)
+    audio = AudioSegment.from_file(BytesIO(file.read()))  # Convert in-memory file to BytesIO
     audio = audio.set_channels(1).set_frame_rate(16000)
     audio = audio[:5000]  # Keep first 5 seconds
     return audio
