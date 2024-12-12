@@ -97,8 +97,7 @@ uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
 
 if uploaded_file:
     # Proses file audio
-    audio = preprocess_audio(uploaded_file)
-    spectrogram_buf = audio_to_melspectrogram(audio)
+    spectrogram_buf = audio_to_melspectrogram(uploaded_file)
 
     # Menyiapkan gambar untuk input model
     img_array = prepare_image(spectrogram_buf)
