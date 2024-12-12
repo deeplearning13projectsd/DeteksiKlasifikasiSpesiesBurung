@@ -19,8 +19,14 @@ def add_custom_header():
             <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo kelompok" width="85" height="85">
         </div>
         <h1 style="font-size: 35px; margin-top: 20px;">
-            Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas
+            AVCLA
         </h1>
+        <h3 style="font-size: 35px; margin-top: 20px;">
+            Aves Classification
+        </h3>
+        <h2 style="font-size: 35px; margin-top: 20px;">
+            Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas
+        </h2>
     </body>
     </html>
     """
