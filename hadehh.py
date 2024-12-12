@@ -147,7 +147,7 @@ if uploaded_file:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/h.png"
     elif predicted_class == 'Spilopelia Chinensis':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/i.png"
-    else :
+    elif predicted_class == 'Spilopelia Chinensis':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/j.png"
 
     st.image(image_url, caption=f"Kelas: {kelas}", use_column_width=True)
