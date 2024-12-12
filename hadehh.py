@@ -129,23 +129,23 @@ if uploaded_file:
     st.metric(label="Akurasi Prediksi", value=f"{akurasi:.2f}%")
 
     # Menampilkan gambar sesuai kelas
-    if kelas == 0:
+    if predicted_class == 'Cacomantis Merulinus':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/a.png"
-    elif kelas == 1:
+    elif predicted_class == 'Culicicapa Ceylonensis':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/b.png"
-    elif kelas == 2:
+    elif predicted_class == 'Geopelia Striata':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/c.png"
-    elif kelas == 3:
+    elif predicted_class == 'Halcyon Smyrnensis':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/d.png"
-    elif kelas == 4:
+    elif predicted_class == 'Ninox Scutulata':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/e.png"
-    elif kelas == 5:
+    elif predicted_class == 'Orthotomus Ruficeps':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/f.png"
-    elif kelas == 6:
+    elif predicted_class == 'Pitta Sordida':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/g.png"
-    elif kelas == 7:
+    elif predicted_class == 'Prinia Flaviventris':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/h.png"
-    elif kelas == 8:
+    elif predicted_class == 'Spilopelia Chinensis':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/i.png"
     else :
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/j.png"
