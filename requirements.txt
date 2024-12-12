@@ -1,7 +1,0 @@
-streamlit
-numpy
-librosa
-matplotlib
-keras
-Pillow
-soundfile
