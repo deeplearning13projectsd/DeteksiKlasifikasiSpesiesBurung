@@ -31,12 +31,23 @@ class_indices = {
 }
 class_labels = {v: k for k, v in class_indices.items()}
 
-# Fungsi untuk memproses file audio
+from pydub import AudioSegment
+import numpy as np
+
 def preprocess_audio(file):
-    # Membaca file audio menggunakan pydub (karena kita menggunakan mp3)
-    audio = AudioSegment.from_mp3(file)
+    # Membaca file audio dari format apapun, misalnya mp3
+    audio = AudioSegment.from_file(file)
+    
+    # Mengubah frame rate menjadi 16000 Hz
+    audio = audio.set_frame_rate(16000)
+    
+    # Menyimpan audio yang sudah diubah menjadi format WAV
+    file_wav = "output_audio.wav"
+    audio.export(file_wav, format="wav")
+    
+    # Mengubah audio menjadi array sampel
     audio_samples = np.array(audio.get_array_of_samples())
-    sr = audio.frame_rate  # Sample rate dari file audio
+    sr = audio.frame_rate  # Mendapatkan sample rate (16000 setelah di-set)
     
     # Menghitung energi audio (energi rata-rata per frame)
     energy = np.square(audio_samples).mean(axis=0)
@@ -47,7 +58,7 @@ def preprocess_audio(file):
     # Ambil indeks frame dengan energi tinggi
     high_energy_frames = np.where(energy > threshold)[0]
     
-    # Tentukan durasi 5 detik (80.000 frame untuk 16000 Hz)
+    # Tentukan durasi 5 detik (16000 frame untuk 16000 Hz)
     segment_duration = 16000 * 5  # 5 detik
     
     # Ambil 5 detik dari segmen dengan energi tinggi
@@ -56,7 +67,8 @@ def preprocess_audio(file):
     else:
         high_energy_audio = audio_samples[:segment_duration]  # Jika kurang dari 5 detik, ambil sisa audio
     
-    return high_energy_audio, sr
+    return high_energy_audio, sr, file_wav
+
 
 # Fungsi untuk mengonversi audio menjadi Mel-spectrogram
 def audio_to_melspectrogram(high_energy_audio, sr):
