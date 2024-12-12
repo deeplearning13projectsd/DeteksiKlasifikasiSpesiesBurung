@@ -37,37 +37,14 @@ class_labels = {v: k for k, v in class_indices.items()}
 import librosa
 import numpy as np
 
-def preprocess_audio(file):
-    # Membaca file audio menggunakan librosa (menggunakan librosa.load untuk membaca file)
-    audio, sr = librosa.load(file, sr=16000, mono=True)  # Setel sample rate ke 16000 dan mono
-    
-    # Menghitung energi audio (energi rata-rata per frame)
-    energy = np.square(audio).mean(axis=0)
-    
-    # Tentukan ambang batas energi untuk mendeteksi segmen dengan energi tinggi
-    threshold = np.percentile(energy, 90)  # Ambang batas di persentil 90 untuk energi tinggi
-    
-    # Ambil indeks frame dengan energi tinggi
-    high_energy_frames = np.where(energy > threshold)[0]
-    
-    # Tentukan durasi 5 detik (80.000 frame untuk 16000 Hz)
-    segment_duration = 16000 * 5  # 5 detik
-    
-    # Ambil 5 detik dari segmen dengan energi tinggi
-    if len(high_energy_frames) > segment_duration:
-        high_energy_audio = audio[high_energy_frames[0]:high_energy_frames[segment_duration]]
-    else:
-        high_energy_audio = audio[:segment_duration]  # Jika kurang dari 5 detik, ambil sisa audio
-    
-    return high_energy_audio, sr
 
 
-def audio_to_melspectrogram(audio):
+def audio_to_melspectrogram(file):
     # Mengubah audio menjadi Mel-spectrogram menggunakan librosa
-    samples = np.array(audio.get_array_of_samples())
-    sr = audio.frame_rate
+    samples = np.array(file.get_array_of_samples())
+    sr = file.frame_rate
     melspec = librosa.feature.melspectrogram(
-        y=samples.astype(float), sr=sr, n_fft=1024, hop_length=512, n_mels=128
+        y=samples.astype(float), sr=16000, n_fft=1024, hop_length=512, n_mels=128
     )
     melspec_db = librosa.power_to_db(melspec, ref=np.max)
 
