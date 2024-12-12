@@ -34,11 +34,30 @@ def add_custom_header():
     st.markdown(html_code, unsafe_allow_html=True)
 add_custom_header()
 
-#MODEL_DIR = "./models/"
-#MODEL_FILE = "convnextaugmentasiepochs50.keras"
-#model_path = os.path.join(MODEL_DIR, MODEL_FILE)
+
+
+import os
+import gdown
+from tensorflow.keras.models import load_model
+
+# Tentukan lokasi model dan ID file Google Drive
 model_path = './models/convnextaugmentasiepochs50.keras'
+google_drive_file_id = '1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq'  # ID file dari link yang Anda berikan
+google_drive_url = f'https://drive.google.com/uc?id={google_drive_file_id}'
 model = load_model(model_path)
+
+# Model siap digunakan
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Kelas untuk klasifikasi
