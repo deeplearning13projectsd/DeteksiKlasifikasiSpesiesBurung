@@ -176,7 +176,7 @@ def add_custom_footer():
     html_code = """
     <html>
     <body>
-        <div class="footer" style="text-align: center; margin-top: 30px; padding: 10px; background-color: #f8f9fa; border-top: 1px solid #ddd;">
+        <div class="footer" style="text-align: center; margin-top: 30px; padding: 10px">
             <h4 style="margin: 0;">© Developer: Kelompok 13 Deep Learning</h4>
             <h5 style="margin: 5px 0;">Version 1.2.1</h5>
         </div>
