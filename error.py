@@ -35,13 +35,38 @@ class_indices = {
 }
 class_labels = {v: k for k, v in class_indices.items()}
 
+from pydub import AudioSegment
+import numpy as np
 from io import BytesIO
 
 def preprocess_audio(file):
-    audio = AudioSegment.from_file(BytesIO(file.read()))  # Convert in-memory file to BytesIO
+    # Membaca file audio dari inputan
+    audio = AudioSegment.from_file(BytesIO(file.read()))
+    
+    # Setel menjadi mono (1 channel) dan frame rate menjadi 16000
     audio = audio.set_channels(1).set_frame_rate(16000)
-    audio = audio[:5000]  # Keep first 5 seconds
-    return audio
+    
+    # Menghitung energi audio pada setiap frame
+    samples = np.array(audio.get_array_of_samples())
+    energy = np.square(samples).mean(axis=0)
+    
+    # Tentukan ambang batas energi untuk mendeteksi segmen dengan energi tinggi
+    threshold = np.percentile(energy, 90)  # Ambang batas di persentil 90 untuk energi tinggi
+    
+    # Ambil indeks frame dengan energi tinggi
+    high_energy_frames = np.where(energy > threshold)[0]
+    
+    # Tentukan durasi 5 detik (80.000 frame untuk 16000 Hz)
+    segment_duration = 16000 * 5  # 5 detik
+    
+    # Ambil 5 detik dari segmen dengan energi tinggi
+    if len(high_energy_frames) > segment_duration:
+        high_energy_audio = audio[high_energy_frames[0]:high_energy_frames[segment_duration]]
+    else:
+        high_energy_audio = audio[:segment_duration]  # Jika kurang dari 5 detik, ambil sisa audio
+    
+    return high_energy_audio
+
 
 def audio_to_melspectrogram(audio):
     samples = np.array(audio.get_array_of_samples())
