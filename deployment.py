@@ -32,9 +32,9 @@ add_custom_header()
 
 
 # Unduh model yang telah dilatih
-gdown.download('https://drive.google.com/uc?export=download&id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq', output_path, quiet=False)
+#gdown.download('https://drive.google.com/uc?export=download&id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq', output_path, quiet=False)
 
-model = load_model(output_path)
+model = load_model('https://www.kaggle.com/models/alberanalafean/transferlearningconvnexttypebase/')
 
 # Kelas untuk klasifikasi
 class_indices = {
