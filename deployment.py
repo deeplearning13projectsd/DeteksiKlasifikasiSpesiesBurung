@@ -32,9 +32,8 @@ add_custom_header()
 
 
 # Unduh model yang telah dilatih
-url = 'https://drive.google.com/uc?id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq' 
-output_path = 'convnextaugmentasiepochs50.keras'
-gdown.download(url, output_path, quiet=False)
+gdown.download('https://drive.google.com/uc?export=download&id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq', output_path, quiet=False)
+
 model = load_model(output_path)
 
 # Kelas untuk klasifikasi
