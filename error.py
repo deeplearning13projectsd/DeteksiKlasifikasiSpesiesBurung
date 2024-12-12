@@ -132,13 +132,13 @@ if uploaded_file:
     st.metric(label="Akurasi Prediksi", value=f"{akurasi:.2f}%")
 
     # Menampilkan gambar sesuai kelas
-    if kelas == "Cacomantis Merulinus":
+    if kelas == 0:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/1.png"
-    elif kelas == "Culicicapa Ceylonensis":
+    elif kelas == 1:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/2.png"
-    elif kelas == "Geopelia Striata":
+    elif kelas == 2:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/3.png"
-    elif kelas == "Halcyon Smyrnensis":
+    elif kelas == 3:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/4.png"
     else:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/5.png"
