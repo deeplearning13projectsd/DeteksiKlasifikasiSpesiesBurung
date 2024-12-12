@@ -34,77 +34,10 @@ def add_custom_header():
     st.markdown(html_code, unsafe_allow_html=True)
 add_custom_header()
 
-
-if "kaggle" not in st.secrets:
-    st.error("Konfigurasi API Kaggle tidak ditemukan! Pastikan `secrets.toml` sudah diatur dengan benar.")
-    st.stop()
-
-kaggle_username = st.secrets["kaggle"]["username"]
-kaggle_key = st.secrets["kaggle"]["key"]
-
-
-def download_model_from_kaggle(kernel_name, output_files, dest_folder):
-    try:
-        # Cek apakah file sudah ada
-        model_files_exist = all([os.path.exists(os.path.join(dest_folder, file)) for file in output_files])
-        if model_files_exist:
-            st.info("Model sudah tersedia, tidak perlu mengunduh ulang.")
-            return False
-
-        # Atur file kaggle.json
-        kaggle_json_path = os.path.expanduser("~/.kaggle/kaggle.json")
-        os.makedirs(os.path.dirname(kaggle_json_path), exist_ok=True)
-
-        with open(kaggle_json_path, 'w') as f:
-            json.dump({"username": kaggle_username, "key": kaggle_key}, f)
-
-        # Otentikasi Kaggle API
-        api = KaggleApi()
-        api.authenticate()
-
-        # Unduh model dari kernel
-        os.makedirs(dest_folder, exist_ok=True)
-        api.kernels_output(kernel_name, path=dest_folder, force=True)
-        st.success("Model berhasil diunduh.")
-        return True
-    except Exception as e:
-        st.error(f"Terjadi kesalahan saat mengunduh model: {str(e)}")
-        return None
-
-
-kernel_name = "alberanalafean/transferlearningconvnexttypebase"
-output_files = "convnextaugmentasiepochs50.keras"
-dest_folder = "./models/"
-
-download_status = download_model_from_kaggle(kernel_name, output_files, dest_folder)
-
-melspec_model_save_path = os.path.join(dest_folder, 'cnn_melspec.h5')
-
-if os.path.exists(melspec_model_save_path):
-    try:
-        model = tf.keras.models.load_model(melspec_model_save_path)
-    except Exception as e:
-        st.error(f"Gagal memuat model Melspec: {str(e)}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+MODEL_DIR = "./models/"
+MODEL_FILE = "convnextaugmentasiepochs50.keras"
+model_path = os.path.join(MODEL_DIR, MODEL_FILE)
+model = tf.keras.models.load_model(model_path)
 
 
 # Kelas untuk klasifikasi
