@@ -114,7 +114,7 @@ def create_mel_spectrogram(segment, gambar, sr=16000, n_fft=1024, hop_length=512
 
 
 
-img = image.load_img(gambar target_size=(224, 224))  # Sesuaikan target_size sesuai input model
+img = image.load_img(gambar, target_size=(224, 224))  # Sesuaikan target_size sesuai input model
 img_array = image.img_to_array(img)
 img_array = np.expand_dims(img_array, axis=0)  # Menambahkan dimensi batch
 img_array /= 255.0  
