@@ -129,25 +129,25 @@ if uploaded_file:
     st.metric(label="Akurasi Prediksi", value=f"{akurasi:.2f}%")
 
     # Menampilkan gambar sesuai kelas
-    if predicted_class == 'Cacomantis Merulinus':
+    if kelas == 'Cacomantis Merulinus':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/a.png"
-    elif predicted_class == 'Culicicapa Ceylonensis':
+    elif kelas  == 'Culicicapa Ceylonensis':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/b.png"
-    elif predicted_class == 'Geopelia Striata':
+    elif kelas  == 'Geopelia Striata':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/c.png"
-    elif predicted_class == 'Halcyon Smyrnensis':
+    elif kelas  == 'Halcyon Smyrnensis':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/d.png"
-    elif predicted_class == 'Ninox Scutulata':
+    elif kelas  == 'Ninox Scutulata':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/e.png"
-    elif predicted_class == 'Orthotomus Ruficeps':
+    elif kelas  == 'Orthotomus Ruficeps':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/f.png"
-    elif predicted_class == 'Pitta Sordida':
+    elif kelas  == 'Pitta Sordida':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/g.png"
-    elif predicted_class == 'Prinia Flaviventris':
+    elif kelas  == 'Prinia Flaviventris':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/h.png"
-    elif predicted_class == 'Spilopelia Chinensis':
+    elif kelas  == 'Spilopelia Chinensis':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/i.png"
-    else :
+    elif kelas  == 'Spilopelia Chinensis':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/j.png"
 
     st.image(image_url, caption=f"Kelas: {kelas}", use_column_width=True)
