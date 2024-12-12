@@ -65,7 +65,7 @@ def get_image_url(predict):
         return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/3.png"
 
 # Load pre-trained model
-model = load_model('jfjerigi.h5')
+model = load_model('https://drive.google.com/file/d/1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq/view?usp=drive_link')
 
 # Streamlit UI
 st.title("Klasifikasi Suara Burung dengan Mel Spectrogram")
