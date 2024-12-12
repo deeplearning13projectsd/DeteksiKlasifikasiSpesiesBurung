@@ -3,7 +3,10 @@ import librosa
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
+from kaggle.api.kaggle_api_extended import KaggleApi
 import io
+import os
+import json
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import gdown
@@ -33,8 +36,67 @@ add_custom_header()
 
 # Unduh model yang telah dilatih
 #gdown.download('https://drive.google.com/uc?export=download&id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq', output_path, quiet=False)
+#model = load_model('https://www.kaggle.com/models/alberanalafean/transferlearningconvnexttypebase/')
+def download_model_from_kaggle(kernel_name, output_files, dest_folder):
+    try:
+        model_files_exist = all([os.path.exists(os.path.join(dest_folder, file)) for file in output_files])
+        if model_files_exist:
+            return False  # Model sudah ada, tidak perlu mengunduh ulang
 
-model = load_model('https://www.kaggle.com/models/alberanalafean/transferlearningconvnexttypebase/')
+        kaggle_username = st.secrets["kaggle"]["KAGGLE_USERNAME"]
+        kaggle_key = st.secrets["kaggle"]["KAGGLE_KEY"]
+
+        kaggle_json_path = os.path.expanduser("~/.kaggle/kaggle.json")
+        os.makedirs(os.path.dirname(kaggle_json_path), exist_ok=True)
+
+        with open(kaggle_json_path, 'w') as f:
+            json.dump({"username": kaggle_username, "key": kaggle_key}, f)
+
+        api = KaggleApi()
+        api.authenticate()
+
+        os.makedirs(dest_folder, exist_ok=True)
+        for output_file in output_files:
+            api.kernels_output(kernel_name, path=dest_folder, force=True)
+        return True
+    except Exception as e:
+        st.error(f"Terjadi kesalahan saat mengunduh model: {str(e)}")
+        return None
+
+kernel_name = "alberanalafean/transferlearningconvnexttypebase"
+output_files = "convnextaugmentasiepochs50.keras"
+dest_folder = "./models/"
+
+download_status = download_model_from_kaggle(kernel_name, output_files, dest_folder)
+
+melspec_model_save_path = os.path.join(dest_folder, 'cnn_melspec.h5')
+
+if os.path.exists(melspec_model_save_path):
+    try:
+        model = tf.keras.models.load_model(melspec_model_save_path)
+    except Exception as e:
+        st.error(f"Gagal memuat model Melspec: {str(e)}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Kelas untuk klasifikasi
 class_indices = {
