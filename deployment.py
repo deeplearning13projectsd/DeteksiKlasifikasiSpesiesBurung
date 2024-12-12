@@ -8,6 +8,29 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import gdown
 
+def add_custom_header():
+    html_code = """
+    <html>
+    <body>
+        <div> 
+            <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo1.png" alt="Logo 1" width="65" height="65">    
+            <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo2.png" alt="Logo 2" width="65" height="65"> 
+            <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo3.png" alt="Logo 3" width="65" height="65">
+            <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo kelompok" width="65" height="65">
+            <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/LogoTN.png" alt="Logo kelompok v" width="65" height="65">
+        </div>
+        <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
+        <div class="footer">
+            <h4>© Developer: Kelompok 13 Deep Learning</h4>
+            <h5>Version 1.2.1</h5>
+        </div>
+    </body>
+    </html>
+    """
+    st.markdown(html_code, unsafe_allow_html=True)
+add_custom_header()
+
+
 # Unduh model yang telah dilatih
 url = 'https://drive.google.com/uc?id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq' 
 output_path = 'convnextaugmentasiepochs50.keras'
@@ -150,8 +173,7 @@ if uploaded_file:
     elif kelas  == 'Spilopelia Chinensis':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/j.png"
 
-    st.image(image_url, caption=f"Kelas: {kelas}", use_column_width=True)
+    st.image(image_url, caption=f"Kelas: {kelas}", use_column_width=False)
 
-# Footer
-st.markdown("### Version Beta 1.0.4")
+# Footer)
 st.markdown("### On Progress Deployment")
