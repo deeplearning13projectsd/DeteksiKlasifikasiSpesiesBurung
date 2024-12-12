@@ -19,10 +19,6 @@ def add_custom_header():
             <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo kelompok" width="65" height="65">
         </div>
         <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
-        <div class="footer">
-            <h4>© Developer: Kelompok 13 Deep Learning</h4>
-            <h5>Version 1.2.1</h5>
-        </div>
     </body>
     </html>
     """
@@ -121,10 +117,6 @@ def add_bg_from_url():
 # Menambahkan background
 add_bg_from_url()
 
-# Streamlit app header
-st.title("Implementasi Model Transfer Learning untuk Klasifikasi Suara Burung")
-st.markdown("### Kelompok 13 Deep Learning")
-
 # File uploader untuk audio
 uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
 
@@ -176,3 +168,18 @@ if uploaded_file:
 
 # Footer)
 st.markdown("### On Progress Deployment")
+
+
+def add_custom_footer():
+    html_code = """
+    <html>
+    <body>
+        <div class="footer">
+            <h4>© Developer: Kelompok 13 Deep Learning</h4>
+            <h5>Version 1.2.1</h5>
+        </div>
+    </body>
+    </html>
+    """
+    st.markdown(html_code, unsafe_allow_html=True)
+add_custom_footer()
