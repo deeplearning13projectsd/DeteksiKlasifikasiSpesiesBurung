@@ -4,4 +4,3 @@ pydub
 matplotlib
 keras
 gdown
-ffmpeg
