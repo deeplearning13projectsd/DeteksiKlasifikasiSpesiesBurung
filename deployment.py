@@ -11,14 +11,16 @@ import gdown
 def add_custom_header():
     html_code = """
     <html>
-    <body>
-        <div> 
+    <body style="text-align: center; margin: 20px;">
+        <div style="display: inline-block; margin-bottom: 10px;"> 
             <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo1.png" alt="Logo 1" width="65" height="65">    
             <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo2.png" alt="Logo 2" width="65" height="65"> 
             <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo3.png" alt="Logo 3" width="65" height="65">
             <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo kelompok" width="65" height="65">
         </div>
-        <h1>Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas</h1>
+        <h1 style="font-size: 24px; color: #333; margin-top: 20px;">
+            Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas
+        </h1>
     </body>
     </html>
     """
@@ -174,12 +176,14 @@ def add_custom_footer():
     html_code = """
     <html>
     <body>
-        <div class="footer">
-            <h4>© Developer: Kelompok 13 Deep Learning</h4>
-            <h5>Version 1.2.1</h5>
+        <div class="footer" style="text-align: center; margin-top: 30px; padding: 10px; background-color: #f8f9fa; border-top: 1px solid #ddd;">
+            <h4 style="margin: 0;">© Developer: Kelompok 13 Deep Learning</h4>
+            <h5 style="margin: 5px 0;">Version 1.2.1</h5>
         </div>
     </body>
     </html>
     """
     st.markdown(html_code, unsafe_allow_html=True)
+
 add_custom_footer()
+
