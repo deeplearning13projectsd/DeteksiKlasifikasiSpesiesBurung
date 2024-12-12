@@ -64,8 +64,8 @@ def preprocess_audio(file):
 
 def audio_to_melspectrogram(audio):
     # Mengubah audio menjadi Mel-spectrogram menggunakan librosa
-    samples = np.array(audio.get_array_of_samples())
-    sr = audio.frame_rate
+    samples = np.array(high_energy_audio.get_array_of_samples())
+    sr = high_energy_audio.frame_rate
     melspec = librosa.feature.melspectrogram(
         y=samples.astype(float), sr=sr, n_fft=1024, hop_length=512, n_mels=128
     )
