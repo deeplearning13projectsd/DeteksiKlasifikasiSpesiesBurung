@@ -65,6 +65,30 @@ def download_model_from_kaggle(kernel_name, output_files, dest_folder):
         st.error(f"Terjadi kesalahan saat mengunduh model: {str(e)}")
         return None
 
+import os
+import streamlit as st
+from kaggle.api.kaggle_api_extended import KaggleApi
+
+# Konfigurasi Kaggle API menggunakan secrets
+os.environ["KAGGLE_USERNAME"] = st.secrets["kaggle"]["username"]
+os.environ["KAGGLE_KEY"] = st.secrets["kaggle"]["key"]
+
+# Inisialisasi Kaggle API
+def initialize_kaggle_api():
+    api = KaggleApi()
+    api.authenticate()
+    return api
+
+
+
+
+
+
+
+
+
+
+
 kernel_name = "alberanalafean/transferlearningconvnexttypebase"
 output_files = "convnextaugmentasiepochs50.keras"
 dest_folder = "./models/"
