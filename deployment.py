@@ -35,64 +35,41 @@ def add_custom_header():
 add_custom_header()
 
 
+if "kaggle" not in st.secrets:
+    st.error("Konfigurasi API Kaggle tidak ditemukan! Pastikan `secrets.toml` sudah diatur dengan benar.")
+    st.stop()
 
-# Unduh model yang telah dilatih
-#gdown.download('https://drive.google.com/uc?export=download&id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq', output_path, quiet=False)
-#model = load_model('https://www.kaggle.com/models/alberanalafean/transferlearningconvnexttypebase/')
+kaggle_username = st.secrets["kaggle"]["username"]
+kaggle_key = st.secrets["kaggle"]["key"]
+
+
 def download_model_from_kaggle(kernel_name, output_files, dest_folder):
     try:
+        # Cek apakah file sudah ada
         model_files_exist = all([os.path.exists(os.path.join(dest_folder, file)) for file in output_files])
         if model_files_exist:
-            return False  # Model sudah ada, tidak perlu mengunduh ulang
+            st.info("Model sudah tersedia, tidak perlu mengunduh ulang.")
+            return False
 
-        kaggle_username = st.secrets["kaggle"]["KAGGLE_USERNAME"]
-        kaggle_key = st.secrets["kaggle"]["KAGGLE_KEY"]
-
+        # Atur file kaggle.json
         kaggle_json_path = os.path.expanduser("~/.kaggle/kaggle.json")
         os.makedirs(os.path.dirname(kaggle_json_path), exist_ok=True)
 
         with open(kaggle_json_path, 'w') as f:
             json.dump({"username": kaggle_username, "key": kaggle_key}, f)
 
+        # Otentikasi Kaggle API
         api = KaggleApi()
         api.authenticate()
 
+        # Unduh model dari kernel
         os.makedirs(dest_folder, exist_ok=True)
-        for output_file in output_files:
-            api.kernels_output(kernel_name, path=dest_folder, force=True)
+        api.kernels_output(kernel_name, path=dest_folder, force=True)
+        st.success("Model berhasil diunduh.")
         return True
     except Exception as e:
         st.error(f"Terjadi kesalahan saat mengunduh model: {str(e)}")
         return None
-
-import os
-import streamlit as st
-from kaggle.api.kaggle_api_extended import KaggleApi
-
-# Konfigurasi Kaggle API menggunakan secrets
-os.environ["KAGGLE_USERNAME"] = st.secrets["kaggle"]["username"]
-os.environ["KAGGLE_KEY"] = st.secrets["kaggle"]["key"]
-
-# Inisialisasi Kaggle API
-def initialize_kaggle_api():
-    api = KaggleApi()
-    api.authenticate()
-    return api
-# Validasi apakah secrets tersedia
-if "kaggle" in st.secrets:
-    os.environ["KAGGLE_USERNAME"] = st.secrets["kaggle"].get("KAGGLE_USERNAME")
-    os.environ["KAGGLE_KEY"] = st.secrets["kaggle"].get("KAGGLE_KEY")
-else:
-    st.error("Konfigurasi API Kaggle tidak ditemukan! Pastikan `secrets.toml` sudah diatur dengan benar.")
-
-
-
-
-
-
-
-
-
 
 
 kernel_name = "alberanalafean/transferlearningconvnexttypebase"
