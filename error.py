@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import gdown
 url = 'https://drive.google.com/file/d/1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq/view?usp=sharing'
-output_path = 'model.h5'
+output_path = 'model.keras'
 gdown.download(url, output_path, quiet=False)
 model = load_model(output_path)
 
