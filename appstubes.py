@@ -4,8 +4,18 @@ from io import BytesIO
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import numpy as np
+#inputan nama var audio
+
+#samakan frekuensi
+#potong 5 detik, pada energi terbaik
+#mels spectro
+#mels spcetro ini jadi img_array yg udh generator
 
 #PROSES GAMBAR MELS
+#setelab diproses gambar melas
+#panggil jadi:
+#img_array=..................
+
 
 #MODEL
 model_path = 'https://drive.google.com/file/d/1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq/view?usp=sharing'
@@ -29,7 +39,7 @@ predicted_label = class_labels.get(predicted_class, "Unknown")
 accuracy = predicted_probabilities[0][predicted_class] * 100
 
 # Fungsi untuk mendapatkan URL gambar berdasarkan nama file
-def get_image_url(predict):    
+def prediksimodel(predict):    
     if predict == 0:
         return "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/1.png"
     elif predict == 1:
@@ -159,16 +169,16 @@ uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
 # Proses file audio
 if uploaded_file:
     # Menampilkan akurasi
-    accuracy = get_accuracy()
+    accuracy = accuracy
     
     # Tampilkan akurasi menggunakan st.metric
     st.metric(label="Akurasi Model ConvNeXt type base", value=f"{accuracy:.4f}", delta=None)
     
     # Ambil nama file
-    file_name = uploaded_file.name
+    audio = uploaded_file.name
     
     # Dapatkan URL gambar berdasarkan nama file
-    image_url = get_image_url(file_name)
+    image_url = prediksimodel(predict)
     
     # Tampilkan gambar hasil klasifikasi
     st.image(image_url, use_column_width=False)
