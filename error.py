@@ -11,8 +11,7 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import gdown
 
 
-# Pastikan ffmpeg ditemukan oleh pydub
-AudioSegment.ffmpeg = which("ffmpeg")
+
 
 # Unduh model yang telah dilatih
 url = 'https://drive.google.com/uc?id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq' 
@@ -35,16 +34,15 @@ class_indices = {
 }
 class_labels = {v: k for k, v in class_indices.items()}
 
+import librosa
+import numpy as np
+
 def preprocess_audio(file):
-    # Membaca file audio dari inputan
-    audio = AudioSegment.from_file(BytesIO(file.read()))  # Membaca file audio dari memori
+    # Membaca file audio menggunakan librosa (menggunakan librosa.load untuk membaca file)
+    audio, sr = librosa.load(file, sr=16000, mono=True)  # Setel sample rate ke 16000 dan mono
     
-    # Setel menjadi mono (1 channel) dan frame rate menjadi 16000
-    audio = audio.set_channels(1).set_frame_rate(16000)
-    
-    # Menghitung energi audio pada setiap frame
-    samples = np.array(audio.get_array_of_samples())
-    energy = np.square(samples).mean(axis=0)
+    # Menghitung energi audio (energi rata-rata per frame)
+    energy = np.square(audio).mean(axis=0)
     
     # Tentukan ambang batas energi untuk mendeteksi segmen dengan energi tinggi
     threshold = np.percentile(energy, 90)  # Ambang batas di persentil 90 untuk energi tinggi
@@ -61,7 +59,8 @@ def preprocess_audio(file):
     else:
         high_energy_audio = audio[:segment_duration]  # Jika kurang dari 5 detik, ambil sisa audio
     
-    return high_energy_audio
+    return high_energy_audio, sr
+
 
 def audio_to_melspectrogram(audio):
     # Mengubah audio menjadi Mel-spectrogram menggunakan librosa
