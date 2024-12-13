@@ -12,33 +12,42 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import gdown
 
 
-def add_custom_header():
-    html_code = """
-    <html>
-    <body style="text-align: center; margin: 20px;">
-        <div style="display: inline-block; margin-bottom: 10px;"> 
-            <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo1.png" alt="Logo 1" width="85" height="85">    
-            <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo2.png" alt="Logo 2" width="85" height="85"> 
-            <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo3.png" alt="Logo 3" width="85" height="85">
-            <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo kelompok" width="85" height="85">
-        </div>
-        <h1 style="font-size: 35px; margin-top: 20px;">
-            AVCLA (Aves Classification)
-        </h1>
-        <h2 style="font-size: 35px; margin-top: 20px;">
-            Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas
-        </h2>
-    </body>
-    </html>
-    """
-    st.markdown(html_code, unsafe_allow_html=True)
-add_custom_header()
+def download_model_from_kaggle(dataset, filename, download_path):
+    api = KaggleApi()
+    api.authenticate()
+    
+    # Unduh dataset dari Kaggle
+    print("Mengunduh model dari Kaggle...")
+    api.dataset_download_file(dataset, file_name=filename, path=download_path)
 
+    # Ekstraksi file zip jika diperlukan
+    file_path = os.path.join(download_path, filename)
+    if file_path.endswith(".zip"):
+        shutil.unpack_archive(file_path, download_path)
+        os.remove(file_path)
 
-model_path = "https://drive.google.com/file/d/1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq/view?usp=sharing"
-model = load_model(model_path)
+# Fungsi untuk memuat model Keras
+def load_model_from_kaggle(dataset, filename, download_path):
+    # Pastikan folder download_path ada
+    os.makedirs(download_path, exist_ok=True)
 
+    # Unduh model
+    download_model_from_kaggle(dataset, filename, download_path)
 
+    # Path file model yang telah diunduh
+    model_path = os.path.join(download_path, filename)
+
+    # Muat model Keras
+    print("Memuat model...")
+    model = load_model(model_path)
+    #print("Model berhasil dimuat!")
+    return model
+
+# Contoh penggunaan
+def main():
+    kaggle_dataset = "alberanalafean/transferlearningconvnexttypebase"  # Nama dataset Kaggle
+    model_filename = "model.keras"  # Nama file model
+    download_path = "./model" 
 
 
 # Kelas untuk klasifikasi
