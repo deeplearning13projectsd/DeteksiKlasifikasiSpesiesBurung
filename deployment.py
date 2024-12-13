@@ -34,7 +34,6 @@ def add_custom_header():
 add_custom_header()
 
 
-
 # Load model
 import requests
 import os
@@ -66,10 +65,10 @@ def download_model_from_dropbox(dropbox_url, destination_path):
         raise Exception(f"Gagal mengunduh file dari Dropbox. Status kode: {response.status_code}")
 
 # Path tujuan di mana model akan disimpan
-model_path = "model.h5"
+model_path = "convnextaugmentasiepochs50.keras"
 
 # URL Dropbox model Anda (ganti dengan URL Anda sendiri)
-dropbox_url = "https://www.dropbox.com/s/your_file_path/model.h5?dl=0"
+dropbox_url = "https://www.dropbox.com/scl/fi/hsjtfiafrrxu68cr69m8j/convnextaugmentasiepochs50.keras?rlkey=t32z9o78iyglkfbdwtyw97uhg&st=q8rt6jo7&dl=0"
 
 try:
     # Unduh model
@@ -81,13 +80,6 @@ try:
 
 except Exception as e:
     print(f"Terjadi kesalahan: {e}")
-
-
-
-
-
-
-
 
 
 
