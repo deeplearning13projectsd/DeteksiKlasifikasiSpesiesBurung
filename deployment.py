@@ -45,7 +45,7 @@ add_custom_header()
 # Fungsi untuk memuat model dari URL
 @st.cache_resource
 def get_model():
-    url = "https://raw.githubusercontent.com/alberanalafean22/onvnextkeras/main/convnextaugmentasiepochs50.keras"
+    url = "https://raw.githubusercontent.com/alberanalafean22/convnextkeras/main/convnextaugmentasiepochs50.keras"
     model_path = get_file("convnextaugmentasiepochs50.keras", url)
     model = tf.keras.models.load_model(model_path)
     return model
