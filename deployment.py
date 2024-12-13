@@ -8,7 +8,6 @@ import os
 import json
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-import gdown
 
 def add_custom_header():
     html_code = """
@@ -41,21 +40,21 @@ add_custom_header()
 
 
 
-import gdown
-import os
-from tensorflow.keras.models import load_model
+# Fungsi untuk memuat model dari URL
+def load_model_from_url(url):
+    response = requests.get(url)
+    response.raise_for_status()  # Pastikan request berhasil
+    model_data = io.BytesIO(response.content)
+    model = tf.keras.models.load_model(model_data)
+    return model
 
-# Define the model URL
-model_url = "https://raw.githubusercontent.com/alberanalafean22/ModelConvnext/main/convnextaugmentasiepochs50.keras"
-local_model_path = "convnextaugmentasiepochs50.keras"
+# Load model saat aplikasi dimulai
+@st.cache_resource
+def get_model():
+    url = "https://raw.githubusercontent.com/alberanalafean22/ModelConvnext/main/convnextaugmentasiepochs50.keras"
+    return load_model_from_url(url)
 
-# Check if the model is already downloaded
-if not os.path.exists(local_model_path):
-    # Download the model from the URL
-    gdown.download(model_url, local_model_path, quiet=False)
-
-# Load the model from the local path
-model = load_model(local_model_path)
+model = get_model()
 
 
 
