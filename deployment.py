@@ -42,25 +42,14 @@ add_custom_header()
 
 
 # Fungsi untuk memuat model dari URL
-def load_model_from_url(url):
-    import requests  # Pastikan modul requests didefinisikan di dalam fungsi
-    response = requests.get(url)
-    response.raise_for_status()  # Pastikan request berhasil
-    model_data = io.BytesIO(response.content)
-    model = tf.keras.models.load_model(model_data)
-    return model
-
-# Load model saat aplikasi dimulai
 @st.cache_resource
 def get_model():
     url = "https://raw.githubusercontent.com/alberanalafean22/ModelConvnext/main/convnextaugmentasiepochs50.keras"
-    return load_model_from_url(url)
+    model_path = get_file("convnext_model.keras", url)
+    model = tf.keras.models.load_model(model_path)
+    return model
 
 model = get_model()
-
-
-
-
 
 
 
