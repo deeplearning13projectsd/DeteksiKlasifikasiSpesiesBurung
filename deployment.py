@@ -37,31 +37,26 @@ add_custom_header()
 
 
 
-
-
-
-
-
 import gdown
+import tensorflow as tf
 
-# URL berbagi Google Drive
-drive_url = "https://drive.google.com/file/d/1HNV0talV3HDmtkYUFZ6u0_hrugPcF4uc/view?usp=sharing"  # Ganti FILE_ID dengan ID file Google Drive Anda
+# Corrected Google Drive URL
+drive_url = "https://drive.google.com/uc?id=1HNV0talV3HDmtkYUFZ6u0_hrugPcF4uc"
 
-# Lokasi penyimpanan file yang diunduh
-output_path = "convnextaugmentasiepochs50.keras"  # Ganti dengan nama file yang sesuai jika berbeda
+# Output path for the downloaded file
+output_path = "convnextaugmentasiepochs50.keras"
 
-# Unduh file dari Google Drive
+# Download file from Google Drive
 print("Downloading model from Google Drive...")
 gdown.download(drive_url, output_path, quiet=False)
 
-# Muat model menggunakan TensorFlow
+# Load model using TensorFlow
 print("Loading model with TensorFlow...")
 try:
     model = tf.keras.models.load_model(output_path)
     print("Model loaded successfully!")
 except Exception as e:
     print(f"Failed to load the model: {e}")
-
 
 
 
