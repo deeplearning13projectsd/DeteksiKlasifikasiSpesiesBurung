@@ -7,15 +7,22 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from tensorflow.keras.models import load_model
 
-# Mengatur Kaggle API
-os.makedirs('~/.kaggle', exist_ok=True)
-!cp kaggle.json ~/.kaggle/
-!chmod 600 ~/.kaggle/kaggle.json
+# URL model dari Dropbox
+dropbox_model_url = 'https://dl.dropboxusercontent.com/s/convnextaugmentasiepochs50.keras'  # Ganti dengan link model Anda
 
-# Mengunduh model dari Kaggle
-!kaggle kernels pull alberanalafean/transferlearningconvnexttypebase -p ./  # Mengunduh kernel
-# Pastikan untuk mengekstrak file .keras dari kernel yang diunduh
-model = load_model('convnextaugmentasiepochs50')  # Ganti dengan nama file model yang sesuai
+# Mengunduh model dari Dropbox
+response = requests.get(dropbox_model_url)
+with open('model.keras', 'wb') as f:
+    f.write(response.content)
+
+# Memuat model
+model = load_model('model.keras')
+
+
+
+
+
+
 
 
 
