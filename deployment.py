@@ -34,9 +34,29 @@ def add_custom_header():
 add_custom_header()
 
 
-downloaded_model_path= "https://raw.githubusercontent.com/alberanalafean22/ModelConvnext/main/convnextaugmentasiepochs50.keras"
-model = load_model(downloaded_model_path)
 
+
+
+
+
+
+
+
+import gdown
+import os
+from tensorflow.keras.models import load_model
+
+# Define the model URL
+model_url = "https://raw.githubusercontent.com/alberanalafean22/ModelConvnext/main/convnextaugmentasiepochs50.keras"
+local_model_path = "convnextaugmentasiepochs50.keras"
+
+# Check if the model is already downloaded
+if not os.path.exists(local_model_path):
+    # Download the model from the URL
+    gdown.download(model_url, local_model_path, quiet=False)
+
+# Load the model from the local path
+model = load_model(local_model_path)
 
 
 
