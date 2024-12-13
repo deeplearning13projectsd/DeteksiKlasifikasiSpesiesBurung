@@ -176,26 +176,26 @@ if uploaded_file:
     st.metric(label="Akurasi Prediksi", value=f"{akurasi:.2f}%")
 
     # Menampilkan gambar sesuai kelas
-    if kelas == 'Cacomantis Merulinus':
-        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/a.png"
-    elif kelas  == 'Culicicapa Ceylonensis':
-        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/b.png"
-    elif kelas  == 'Geopelia Striata':
-        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/c.png"
-    elif kelas  == 'Halcyon Smyrnensis':
-        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/d.png"
-    elif kelas  == 'Ninox Scutulata':
-        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/e.png"
-    elif kelas  == 'Orthotomus Ruficeps':
-        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/f.png"
-    elif kelas  == 'Pitta Sordida':
-        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/g.png"
-    elif kelas  == 'Prinia Flaviventris':
-        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/h.png"
-    elif kelas  == 'Spilopelia Chinensis':
-        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/i.png"
+    #if kelas == 'Cacomantis Merulinus':
+    #    image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/a.png"
+    #elif kelas  == 'Culicicapa Ceylonensis':
+    #    image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/b.png"
+    #elif kelas  == 'Geopelia Striata':
+    #    image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/c.png"
+    #elif kelas  == 'Halcyon Smyrnensis':
+    #    image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/d.png"
+    #elif kelas  == 'Ninox Scutulata':
+    #    image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/e.png"
+    #elif kelas  == 'Orthotomus Ruficeps':
+    #    image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/f.png"
+    #elif kelas  == 'Pitta Sordida':
+    #    image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/g.png"
+    #elif kelas  == 'Prinia Flaviventris':
+    #   image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/h.png"
+    #elif kelas  == 'Spilopelia Chinensis':
+    #    image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/i.png"
 
-    st.image(image_url, caption=f"Kelas: {kelas}", use_column_width=True)
+    # st.image(image_url, caption=f"Kelas: {kelas}", use_column_width=True)
 
 # Footer
 st.markdown("### Version Beta 1.0.4")
