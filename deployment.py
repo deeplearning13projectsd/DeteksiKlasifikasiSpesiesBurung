@@ -210,8 +210,8 @@ def add_custom_footer():
         <div class="footer" style="text-align: center; margin-top: 30px; padding: 10px">
             <h5 style="margin: 5px 0;">AVCLA</h5>
             <p style="margin: 5px 0;">AVCLA (Aves Classification), merupakan sebuah website dalam mendeteksi klasifikasi burung di kawasan Taman Nasional Way Kambas. Website ini bisa mendeteksi klasifikasi pada 10 spesies burung, dengan memanfaatkan metode Deep Learning menggunakan Transfer Learning dengan arsitektur Convnext Type Base. Website ini bisa memprediksi spesies burung berdasarkan suara. Model ini dibangun dalam memenuhi Case Based Learning pada matakuliah SD4102Deep Learning di Program Studi Sains Data. Model ini bisa melakukan klasifikasi spesies burung dengan akurasi rata-rata 70%</p>
-            <h5 style="margin: 0;">© Developer: Kelompok 13 Deep Learning</h5>
             <h4>‎‎‎‎‎‎‎‎ㅤ</h4>
+            <h5 style="margin: 0;">© Developer: Kelompok 13 Deep Learning</h5>
             <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo0.png" alt="Logo kelompok" width="85" height="85">
             <h5 style="margin: 5px 0;">Version 1.0.1 December 2024</h5>
             <p>
