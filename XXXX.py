@@ -7,16 +7,65 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from tensorflow.keras.models import load_model
 
-# URL model dari Dropbox (ubah sesuai dengan URL yang benar)
-dropbox_model_url = 'https://dl.dropboxusercontent.com/s/hsjtfiafrrxu68cr69m8j/convnextaugmentasiepochs50.keras'
+import os
+import json
+import tensorflow as tf
+from kaggle.api.kaggle_api_extended import KaggleApi
+import streamlit as st
 
-# Mengunduh model dari Dropbox
-response = requests.get(dropbox_model_url)
-with open('convnextaugmentasiepochs50.keras', 'wb') as f:
-    f.write(response.content)
+# Fungsi untuk mengunduh model cnn_melspec.h5 dari Kaggle API
+def download_melspec_model_from_kaggle(kernel_name, output_file, dest_folder):
+    try:
+        model_path = os.path.join(dest_folder, output_file)
 
-# Memuat model
-model = load_model('convnextaugmentasiepochs50.keras')
+        # Cek apakah model sudah ada
+        if os.path.exists(model_path):
+            return False  # Model sudah ada, tidak perlu mengunduh ulang
+
+        # Ambil kredensial dari secrets
+        kaggle_username = st.secrets["kaggle"]["KAGGLE_USERNAME"]
+        kaggle_key = st.secrets["kaggle"]["KAGGLE_KEY"]
+
+        # Simpan kredensial ke file kaggle.json
+        kaggle_json_path = os.path.expanduser("~/.kaggle/kaggle.json")
+        os.makedirs(os.path.dirname(kaggle_json_path), exist_ok=True)
+
+        with open(kaggle_json_path, 'w') as f:
+            json.dump({"username": kaggle_username, "key": kaggle_key}, f)
+
+        # Autentikasi dengan Kaggle API
+        api = KaggleApi()
+        api.authenticate()
+
+        # Unduh file model
+        os.makedirs(dest_folder, exist_ok=True)
+        api.kernels_output(kernel_name, path=dest_folder, force=True)
+
+        return True
+    except Exception as e:
+        st.error(f"Terjadi kesalahan saat mengunduh model: {str(e)}")
+        return None
+
+# Parameter untuk mengunduh model
+kernel_name = "alberanalafean/transferlearningconvnexttypebase"
+output_file = "convnextaugmentasiepochs50.keras"
+dest_folder = "./models/"
+
+# Unduh model jika diperlukan
+download_status = download_melspec_model_from_kaggle(kernel_name, output_file, dest_folder)
+
+# Path model yang akan dimuat
+melspec_model_save_path = os.path.join(dest_folder, output_file)
+
+# Memuat model cnn_melspec.h5
+if os.path.exists(melspec_model_save_path):
+    try:
+        model = tf.keras.models.load_model(melspec_model_save_path)
+        st.success("Model Melspec berhasil dimuat.")
+    except Exception as e:
+        st.error(f"Gagal memuat model Melspec: {str(e)}")
+else:
+    st.warning("Model Melspec tidak ditemukan.")
 
 
 
