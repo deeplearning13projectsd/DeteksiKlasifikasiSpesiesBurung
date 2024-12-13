@@ -35,55 +35,8 @@ def add_custom_header():
 add_custom_header()
 
 
-
-import streamlit as st
-import os
-import shutil
-from kaggle.api.kaggle_api_extended import KaggleApi
-from tensorflow.keras.models import load_model
-
-# Fungsi untuk mengunduh model dari Kaggle
-def download_model_from_kaggle(dataset, filename, download_path):
-    api = KaggleApi()
-    api.authenticate()
-    
-    # Unduh dataset dari Kaggle
-    st.write("Mengunduh model dari Kaggle...")
-    api.dataset_download_file(dataset, file_name=filename, path=download_path)
-
-    # Ekstraksi file zip jika diperlukan
-    file_path = os.path.join(download_path, filename)
-    if file_path.endswith(".zip"):
-        shutil.unpack_archive(file_path, download_path)
-        os.remove(file_path)
-
-# Aplikasi Streamlit
-st.title("Load Keras Model from Kaggle")
-
-# Input untuk dataset Kaggle dan nama file model
-kaggle_dataset = st.text_input("alberanalafean/transferlearningconvnexttypebase")
-model_filename = st.text_input("convnextaugmentasiepochs50.keras")
-
-# Path lokal untuk menyimpan model
-download_path = "./model"
-os.makedirs(download_path, exist_ok=True)
-
-# Tombol untuk mengunduh dan memuat model
-if st.button("Unduh dan Muat Model"):
-    try:
-        # Unduh model
-        download_model_from_kaggle(kaggle_dataset, model_filename, download_path)
-
-        # Path file model yang telah diunduh
-        model_path = os.path.join(download_path, model_filename)
-
-        # Muat model Keras
-        st.write("Memuat model...")
-        model = load_model(model_path)
-
-        st.success("Model berhasil dimuat!")
-    except Exception as e:
-        st.error(f"Terjadi kesalahan: {str(e)}")
+model_path = "https://drive.google.com/file/d/1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq/view?usp=sharing"
+model = load_model(model_path)
 
 
 
