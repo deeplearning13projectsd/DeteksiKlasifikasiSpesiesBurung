@@ -3,4 +3,3 @@ tensorflow
 pydub
 matplotlib
 gdown
-kaggle
