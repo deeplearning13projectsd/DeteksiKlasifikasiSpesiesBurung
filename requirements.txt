@@ -1,5 +1,5 @@
 librosa
-keras
+tensorflow
 pydub
 matplotlib
 gdown
