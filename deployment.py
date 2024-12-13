@@ -207,9 +207,15 @@ def add_custom_footer():
     <body>
         <div class="footer" style="text-align: center; margin-top: 30px; padding: 10px">
             <h5 style="margin: 5px 0;">AVCLA</h5>
-            <p style="margin: 5px 0;">AVCLA, merupakan sebuah website dalam mendeteksi klasifikasi burung di kawasan Taman Nasional Way Kambas. Website ini bisa mendeteksi klasifikasi pada 10 spesies burung, dengan memanfaatkan deep learning menggunakan transfer learning dengan arsitektur Convnext Type Base. Website ini bisa memprediksi spesies burung berdasarkan suara. Model ini dibangun dalam memenuhi Case Based Learning pada matakuliah SD4102Deep Learning di Program Studi Sains Data</p>
+            <p style="margin: 5px 0;">AVCLA, merupakan sebuah website dalam mendeteksi klasifikasi burung di kawasan Taman Nasional Way Kambas. Website ini bisa mendeteksi klasifikasi pada 10 spesies burung, dengan memanfaatkan metode Deep Learning menggunakan Transfer Learning dengan arsitektur Convnext Type Base. Website ini bisa memprediksi spesies burung berdasarkan suara. Model ini dibangun dalam memenuhi Case Based Learning pada matakuliah SD4102Deep Learning di Program Studi Sains Data</p>
             <h5 style="margin: 0;">© Developer: Kelompok 13 Deep Learning</h5>
             <h5 style="margin: 5px 0;">Version 1.0.1 2024</h5>
+            <h5 style="margin: 5px 0;">Version 1.0.1 2024</h5>
+            <p>
+                <a href="https://github.com/sains-data/Implementasi-Model-Transfer-Learning-Arsitektur-ConvNeXt-untuk-Klasifikasi-Suara-Burung-di-TNWK" target="_blank">
+                    Visit the Our GitHub Repository
+                </a>
+            </p>
       </div>
     </body>
     </html>
