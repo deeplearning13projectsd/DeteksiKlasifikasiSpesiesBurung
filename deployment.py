@@ -68,7 +68,7 @@ def load_model_from_kaggle(dataset, filename, download_path):
 # Contoh penggunaan
 def main():
     kaggle_dataset = "alberanalafean/transferlearningconvnexttypebase"  # Nama dataset Kaggle
-    model_filename = "model.keras"  # Nama file model
+    model_filename = "convnextaugmentasiepochs50.keras"  # Nama file model
     download_path = "./model" 
 
 
