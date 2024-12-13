@@ -42,9 +42,14 @@ add_custom_header()
 import gdown
 import tensorflow as tf
 
-# Corrected Google Drive URL  (Ada Quota Excedeed per hari
-#drive_url = "https://drive.google.com/uc?id=1HNV0talV3HDmtkYUFZ6u0_hrugPcF4uc" alternatif model 1
-drive_url = "https://drive.google.com/uc?id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq"    #alternatif model 2
+# Corrected Google Drive URL  (Ada Quota Excedeed per hari, karena akses web terlalu sering dan banyak secara bersamaan dalam satu waktu
+#drive_url = "https://drive.google.com/uc?id=1HNV0talV3HDmtkYUFZ6u0_hrugPcF4uc"  #alternatif model 1 Exceeded 03.40
+#drive_url = "https://drive.google.com/uc?id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq"    #alternatif model 2 Exceede 18.00
+drive_url =  "https://drive.google.com/uc?id=1byy1lD2glyvUaA4Ht_xesnsmzJxomZv5" #alternatif model 3
+#drive_url =  " " #alternatif model 4
+#drive_url =  " "  #alternatif model 5
+
+
 
 # Output path for the downloaded file
 output_path = "convnextaugmentasiepochs50.keras"
