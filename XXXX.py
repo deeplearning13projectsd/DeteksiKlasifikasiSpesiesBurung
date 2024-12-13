@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from tensorflow.keras.models import load_model
 
-# URL model dari Dropbox
-dropbox_model_url = 'https://dl.dropboxusercontent.com/s/hsjtfiafrrxu68cr69m8j/convnextaugmentasiepochs50.keras'  # Ganti dengan link model Anda
+# URL model dari Dropbox (ubah sesuai dengan URL yang benar)
+dropbox_model_url = 'https://dl.dropboxusercontent.com/s/hsjtfiafrrxu68cr69m8j/convnextaugmentasiepochs50.keras'
 
 # Mengunduh model dari Dropbox
 response = requests.get(dropbox_model_url)
@@ -17,7 +17,6 @@ with open('convnextaugmentasiepochs50.keras', 'wb') as f:
 
 # Memuat model
 model = load_model('convnextaugmentasiepochs50.keras')
-
 
 
 
