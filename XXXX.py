@@ -8,44 +8,17 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import gdown
 
-# Load model
-import gdown
-from keras.models import load_model
-
-def download_model_with_gdown(file_id, destination_path):
-    """
-    Mengunduh file dari Google Drive menggunakan gdown dan menyimpannya ke tujuan yang ditentukan.
-
-    Args:
-        file_id (str): ID file Google Drive.
-        destination_path (str): Jalur di mana file akan disimpan.
-
-    Returns:
-        str: Jalur lengkap ke file yang diunduh.
-    """
-    google_drive_url = f"https://drive.google.com/uc?id={file_id}"
-    gdown.download(google_drive_url, destination_path, quiet=False)
-    print(f"Model berhasil diunduh ke {destination_path}")
-    return destination_path
-
-# Path tujuan di mana model akan disimpan
-model_path = "convnextaugmentasiepochs50.keras"
-
-# ID file Google Drive (ganti dengan ID file Anda sendiri)
-google_drive_file_id = "1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq"  # ID file dari tautan Google Drive
-
-try:
-    # Unduh model
-    downloaded_model_path = download_model_with_gdown(google_drive_file_id, model_path)
-
-    # Muat model Keras
-    model = load_model(downloaded_model_path)
-    print("Model berhasil dimuat!")
-
-except Exception as e:
-    print(f"Terjadi kesalahan: {e}")
 
 
+
+url = 'https://drive.google.com/uc?id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq'  # Ganti dengan URL yang benar
+output = 'convnextaugmentasiepochs50.keras’'  # Nama file output setelah diunduh
+
+# Mengunduh file
+gdown.download(url, output, quiet=False)
+
+# Memuat model dari file .keras
+model = load_model(output)
 
 
 
