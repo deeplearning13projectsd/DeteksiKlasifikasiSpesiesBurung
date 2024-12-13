@@ -14,7 +14,7 @@ from tensorflow.keras.utils import get_file
 def add_custom_header():
     html_code = """
     <html>
-    <body style="text-align: center; margin: 20px;">
+    <body margin: 20px;">
         <div style="text-align: center; margin-top: 30px; padding: 10px"> 
             <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo1.png" alt="Logo 1" width="85" height="85">    
             <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo2.png" alt="Logo 2" width="85" height="85"> 
