@@ -44,7 +44,7 @@ import tensorflow as tf
 
 # Corrected Google Drive URL
 #drive_url = "https://drive.google.com/uc?id=1HNV0talV3HDmtkYUFZ6u0_hrugPcF4uc" alternatif model 1
-drive_url = "https://drive.google.com/1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq"    #alternatif model 2
+drive_url = "https://drive.google.com/uc?id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq"    #alternatif model 2
 
 # Output path for the downloaded file
 output_path = "convnextaugmentasiepochs50.keras"
