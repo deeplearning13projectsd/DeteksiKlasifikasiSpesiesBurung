@@ -34,27 +34,39 @@ def add_custom_header():
 add_custom_header()
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Load model
 import requests
 import os
 from keras.models import load_model
 
-def download_model_from_dropbox(dropbox_url, destination_path):
+def download_model_from_google_drive(file_id, destination_path):
     """
-    Mengunduh file dari Dropbox dan menyimpannya ke tujuan yang ditentukan.
+    Mengunduh file dari Google Drive dan menyimpannya ke tujuan yang ditentukan.
 
     Args:
-        dropbox_url (str): URL unduhan langsung dari Dropbox.
+        file_id (str): ID file Google Drive.
         destination_path (str): Jalur di mana file akan disimpan.
 
     Returns:
         str: Jalur lengkap ke file yang diunduh.
     """
-    # Dropbox URL perlu diubah agar menjadi tautan langsung
-    if "www.dropbox.com" in dropbox_url:
-        dropbox_url = dropbox_url.replace("www.dropbox.com", "dl.dropboxusercontent.com")
+    # URL unduhan Google Drive
+    google_drive_url = f"https://drive.google.com/uc?export=download&id={file_id}"
 
-    response = requests.get(dropbox_url, stream=True)
+    response = requests.get(google_drive_url, stream=True)
     if response.status_code == 200:
         with open(destination_path, "wb") as file:
             for chunk in response.iter_content(chunk_size=8192):
@@ -62,17 +74,17 @@ def download_model_from_dropbox(dropbox_url, destination_path):
         print(f"Model berhasil diunduh ke {destination_path}")
         return destination_path
     else:
-        raise Exception(f"Gagal mengunduh file dari Dropbox. Status kode: {response.status_code}")
+        raise Exception(f"Gagal mengunduh file dari Google Drive. Status kode: {response.status_code}")
 
 # Path tujuan di mana model akan disimpan
 model_path = "convnextaugmentasiepochs50.keras"
 
-# URL Dropbox model Anda (ganti dengan URL Anda sendiri)
-dropbox_url = "https://www.dropbox.com/scl/fi/hsjtfiafrrxu68cr69m8j/convnextaugmentasiepochs50.keras?rlkey=t32z9o78iyglkfbdwtyw97uhg&st=q8rt6jo7&dl=0"
+# ID file Google Drive (ganti dengan ID file Anda sendiri)
+google_drive_file_id = "1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq"  # ID file dari tautan Google Drive
 
 try:
     # Unduh model
-    downloaded_model_path = download_model_from_dropbox(dropbox_url, model_path)
+    downloaded_model_path = download_model_from_google_drive(google_drive_file_id, model_path)
 
     # Muat model Keras
     model = load_model(downloaded_model_path)
@@ -80,11 +92,6 @@ try:
 
 except Exception as e:
     print(f"Terjadi kesalahan: {e}")
-
-
-
-
-
 
 
 
