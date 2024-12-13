@@ -2,4 +2,4 @@ librosa
 tensorflow
 pydub
 matplotlib
-gdown
+requests
