@@ -47,7 +47,7 @@ import tensorflow as tf
 #drive_url = "https://drive.google.com/uc?id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq"    #alternatif model 2 Exceede 18.00  akun kelompok
 drive_url =  "https://drive.google.com/uc?id=1byy1lD2glyvUaA4Ht_xesnsmzJxomZv5" #alternatif model 3  akun lbero
 #drive_url =  "https://drive.google.com/uc?id=/10vvxBdSrSL0GvOV2Ymxu7TNdYnHnSgeJ" #alternatif model 4  akun cloudalber
-#drive_url =  "https://drive.google.com/uc?id=/d/179lgPiQpbdtu6Rnakf8kumoMGF1RO3Kb"  #alternatif model 5 akun alberanalafean
+#drive_url =  "https://drive.google.com/uc?id=/179lgPiQpbdtu6Rnakf8kumoMGF1RO3Kb"  #alternatif model 5 akun alberanalafean
 
 
 
