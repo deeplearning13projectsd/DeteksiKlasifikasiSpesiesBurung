@@ -46,7 +46,7 @@ def load_model_from_url(url):
     response = requests.get(url)
     response.raise_for_status()  # Pastikan request berhasil
     model_data = io.BytesIO(response.content)
-    model = tf.keras.models.load_model(model_data)
+    model = load_model(model_data)
     return model
 
 # Load model saat aplikasi dimulai
