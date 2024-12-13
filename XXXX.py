@@ -8,15 +8,13 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import gdown
 
-# Unduh model yang telah dilatih
 # Load model
-import requests
-import os
+import gdown
 from keras.models import load_model
 
-def download_model_from_google_drive(file_id, destination_path):
+def download_model_with_gdown(file_id, destination_path):
     """
-    Mengunduh file dari Google Drive dan menyimpannya ke tujuan yang ditentukan.
+    Mengunduh file dari Google Drive menggunakan gdown dan menyimpannya ke tujuan yang ditentukan.
 
     Args:
         file_id (str): ID file Google Drive.
@@ -25,18 +23,10 @@ def download_model_from_google_drive(file_id, destination_path):
     Returns:
         str: Jalur lengkap ke file yang diunduh.
     """
-    # URL unduhan Google Drive
-    google_drive_url = f"https://drive.google.com/uc?export=download&id={file_id}"
-
-    response = requests.get(google_drive_url, stream=True)
-    if response.status_code == 200:
-        with open(destination_path, "wb") as file:
-            for chunk in response.iter_content(chunk_size=8192):
-                file.write(chunk)
-        print(f"Model berhasil diunduh ke {destination_path}")
-        return destination_path
-    else:
-        raise Exception(f"Gagal mengunduh file dari Google Drive. Status kode: {response.status_code}")
+    google_drive_url = f"https://drive.google.com/uc?id={file_id}"
+    gdown.download(google_drive_url, destination_path, quiet=False)
+    print(f"Model berhasil diunduh ke {destination_path}")
+    return destination_path
 
 # Path tujuan di mana model akan disimpan
 model_path = "convnextaugmentasiepochs50.keras"
@@ -46,7 +36,7 @@ google_drive_file_id = "1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq"  # ID file dari tauta
 
 try:
     # Unduh model
-    downloaded_model_path = download_model_from_google_drive(google_drive_file_id, model_path)
+    downloaded_model_path = download_model_with_gdown(google_drive_file_id, model_path)
 
     # Muat model Keras
     model = load_model(downloaded_model_path)
@@ -54,12 +44,6 @@ try:
 
 except Exception as e:
     print(f"Terjadi kesalahan: {e}")
-
-
-
-
-
-
 
 
 
