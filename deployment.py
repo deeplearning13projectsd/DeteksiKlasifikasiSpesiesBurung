@@ -198,7 +198,7 @@ if uploaded_file:
     elif kelas  == 'Surniculus Lugubris':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/j.png"
 
-    st.image(image_url, caption=f"Kelas: {kelas}", use_column_width=True)
+    st.image(image_url, caption=f"Kelas: {kelas}", use_container_width=True)
 
 
 def add_custom_footer():
