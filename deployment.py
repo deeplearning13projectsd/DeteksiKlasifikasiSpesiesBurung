@@ -24,9 +24,9 @@ def add_custom_header():
         <h1 style="font-size: 35px; margin-top: 20px;">
             AVCLA (Aves Classification)
         </h1>
-        <h3 style="font-size: 35px; margin-top: 20px;">
+        <h4 style="font-size: 35px; margin-top: 20px;">
             Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas
-        </h3>
+        </h4>
     </body>
     </html>
     """
