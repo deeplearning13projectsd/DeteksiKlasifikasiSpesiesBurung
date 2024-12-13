@@ -24,9 +24,9 @@ def add_custom_header():
         <h1 style="font-size: 35px; margin-top: 20px;">
             AVCLA (Aves Classification)
         </h1>
-        <h2 style="font-size: 35px; margin-top: 20px;">
+        <h3 style="font-size: 35px; margin-top: 20px;">
             Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas
-        </h2>
+        </h3>
     </body>
     </html>
     """
@@ -198,7 +198,7 @@ if uploaded_file:
     elif kelas  == 'Surniculus Lugubris':
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/j.png"
 
-    st.image(image_url, caption=f"Kelas: {kelas}", use_column_width=False)
+    st.image(image_url, caption=f"Kelas: {kelas}", use_column_width=True)
 
 
 def add_custom_footer():
