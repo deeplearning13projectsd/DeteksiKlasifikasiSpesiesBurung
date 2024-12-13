@@ -12,11 +12,11 @@ dropbox_model_url = 'https://www.dropbox.com/scl/fi/hsjtfiafrrxu68cr69m8j/convne
 
 # Mengunduh model dari Dropbox
 response = requests.get(dropbox_model_url)
-with open('model.keras', 'wb') as f:
+with open('convnextaugmentasiepochs50.keras', 'wb') as f:
     f.write(response.content)
 
 # Memuat model
-model = load_model('model.keras')
+model = load_model('convnextaugmentasiepochs50.keras')
 
 
 
