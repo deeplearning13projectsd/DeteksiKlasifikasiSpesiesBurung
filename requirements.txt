@@ -2,5 +2,4 @@ librosa
 tensorflow
 pydub
 matplotlib
-requests
-IO
+
