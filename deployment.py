@@ -34,42 +34,82 @@ def add_custom_header():
 add_custom_header()
 
 
-def download_model_from_kaggle(dataset, filename, download_path):
-    api = KaggleApi()
-    api.authenticate()
-    
-    # Unduh dataset dari Kaggle
-    print("Mengunduh model dari Kaggle...")
-    api.dataset_download_file(dataset, file_name=filename, path=download_path)
 
-    # Ekstraksi file zip jika diperlukan
-    file_path = os.path.join(download_path, filename)
-    if file_path.endswith(".zip"):
-        shutil.unpack_archive(file_path, download_path)
-        os.remove(file_path)
+# Load model
+import requests
+import os
+from keras.models import load_model
 
-# Fungsi untuk memuat model Keras
-def load_model_from_kaggle(dataset, filename, download_path):
-    # Pastikan folder download_path ada
-    os.makedirs(download_path, exist_ok=True)
+def download_model_from_dropbox(dropbox_url, destination_path):
+    """
+    Mengunduh file dari Dropbox dan menyimpannya ke tujuan yang ditentukan.
 
+    Args:
+        dropbox_url (str): URL unduhan langsung dari Dropbox.
+        destination_path (str): Jalur di mana file akan disimpan.
+
+    Returns:
+        str: Jalur lengkap ke file yang diunduh.
+    """
+    # Dropbox URL perlu diubah agar menjadi tautan langsung
+    if "www.dropbox.com" in dropbox_url:
+        dropbox_url = dropbox_url.replace("www.dropbox.com", "dl.dropboxusercontent.com")
+
+    response = requests.get(dropbox_url, stream=True)
+    if response.status_code == 200:
+        with open(destination_path, "wb") as file:
+            for chunk in response.iter_content(chunk_size=8192):
+                file.write(chunk)
+        print(f"Model berhasil diunduh ke {destination_path}")
+        return destination_path
+    else:
+        raise Exception(f"Gagal mengunduh file dari Dropbox. Status kode: {response.status_code}")
+
+# Path tujuan di mana model akan disimpan
+model_path = "model.h5"
+
+# URL Dropbox model Anda (ganti dengan URL Anda sendiri)
+dropbox_url = "https://www.dropbox.com/s/your_file_path/model.h5?dl=0"
+
+try:
     # Unduh model
-    download_model_from_kaggle(dataset, filename, download_path)
-
-    # Path file model yang telah diunduh
-    model_path = os.path.join(download_path, filename)
+    downloaded_model_path = download_model_from_dropbox(dropbox_url, model_path)
 
     # Muat model Keras
-    print("Memuat model...")
-    model = load_model(model_path)
-    #print("Model berhasil dimuat!")
-    return model
+    model = load_model(downloaded_model_path)
+    print("Model berhasil dimuat!")
 
-# Contoh penggunaan
-def main():
-    kaggle_dataset = "alberanalafean/transferlearningconvnexttypebase"  # Nama dataset Kaggle
-    model_filename = "convnextaugmentasiepochs50.keras"  # Nama file model
-    download_path = "./model" 
+except Exception as e:
+    print(f"Terjadi kesalahan: {e}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Kelas untuk klasifikasi
@@ -205,9 +245,6 @@ if uploaded_file:
         image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/j.png"
 
     st.image(image_url, caption=f"Kelas: {kelas}", use_column_width=False)
-
-# Footer)
-st.markdown("### On Progress Deployment")
 
 
 def add_custom_footer():
