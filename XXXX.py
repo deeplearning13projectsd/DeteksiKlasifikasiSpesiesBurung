@@ -18,7 +18,7 @@ output = 'convnextaugmentasiepochs50.keras’'  # Nama file output setelah diund
 gdown.download(url, output, quiet=False)
 
 # Memuat model dari file .keras
-model = load_model(output)
+model = tf.keras.models.load_model(output)
 
 
 
