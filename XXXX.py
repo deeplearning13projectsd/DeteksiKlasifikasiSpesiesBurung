@@ -17,6 +17,9 @@ os.makedirs('~/.kaggle', exist_ok=True)
 # Pastikan untuk mengekstrak file .keras dari kernel yang diunduh
 model = load_model('convnextaugmentasiepochs50')  # Ganti dengan nama file model yang sesuai
 
+
+
+
 # Kelas untuk klasifikasi
 class_indices = {
     'Cacomantis Merulinus': 0,
@@ -34,24 +37,37 @@ class_labels = {v: k for k, v in class_indices.items()}
 
 # Fungsi untuk memproses file audio menggunakan librosa
 def preprocess_audio(file):
-    audio, sr = librosa.load(file, sr=16000)
+    # Membaca file audio menggunakan librosa
+    audio, sr = librosa.load(file, sr=16000)  # Mengatur sample rate menjadi 16000 Hz
+    
+    # Menghitung energi audio (energi rata-rata per frame)
     energy = np.square(audio).mean(axis=0)
-    threshold = np.percentile(energy, 90)
+    
+    # Tentukan ambang batas energi untuk mendeteksi segmen dengan energi tinggi
+    threshold = np.percentile(energy, 90)  # Ambang batas di persentil 90 untuk energi tinggi
+    
+    # Ambil indeks frame dengan energi tinggi
     high_energy_frames = np.where(energy > threshold)[0]
-    segment_duration = 16000 * 5
-
+    
+    # Tentukan durasi 5 detik (16000 frame untuk 16000 Hz)
+    segment_duration = 16000 * 5  # 5 detik
+    
+    # Ambil 5 detik dari segmen dengan energi tinggi
     if len(high_energy_frames) > segment_duration:
-        high_energy_audio = audio[high_energy_frames[0]:high_energy_frames[0] + segment_duration]
+        high_energy_audio = audio[high_energy_frames[0]:high_energy_frames[segment_duration]]
     else:
-        high_energy_audio = audio[:segment_duration]
-
+        high_energy_audio = audio[:segment_duration]  # Jika kurang dari 5 detik, ambil sisa audio
+    
     return high_energy_audio, sr
+
 
 # Fungsi untuk mengonversi audio menjadi Mel-spectrogram
 def audio_to_melspectrogram(high_energy_audio, sr):
+    # Mengubah audio menjadi Mel-spectrogram menggunakan librosa
     melspec = librosa.feature.melspectrogram(y=high_energy_audio, sr=sr, n_fft=1024, hop_length=512, n_mels=128)
     melspec_db = librosa.power_to_db(melspec, ref=np.max)
 
+    # Membuat visualisasi dari Mel-spectrogram
     fig = plt.figure(figsize=(5, 5))
     plt.axis('off')
     plt.imshow(melspec_db, aspect='auto', origin='lower', cmap='inferno')
@@ -61,6 +77,15 @@ def audio_to_melspectrogram(high_energy_audio, sr):
     plt.close(fig)
     buf.seek(0)
     return buf
+
+# Fungsi untuk menyiapkan gambar untuk input model
+def prepare_image(image_buf):
+    # Menyiapkan gambar untuk input model
+    img = image.load_img(image_buf, target_size=(224, 224))
+    img_array = image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)
+    img_array /= 255.0
+    return img_array
 
 # Fungsi untuk menambahkan background ke halaman Streamlit
 def add_bg_from_url():
@@ -95,4 +120,44 @@ if uploaded_file:
     spectrogram_buf = audio_to_melspectrogram(high_energy_audio, sr)
 
     # Menyiapkan gambar untuk input model
-    img_array = np.array(plt.imread(spectrogram_buf)).reshape(1, 224, 224, 3)  # Pastikan ukuran sesuai dengan input model
+    img_array = prepare_image(spectrogram_buf)
+
+    # Prediksi menggunakan model
+    predicted_probabilities = model.predict(img_array, verbose=0)
+    predicted_class = np.argmax(predicted_probabilities, axis=1)[0]
+
+    # Ambil kelas dan akurasi
+    kelas = class_labels.get(predicted_class, "Unknown")
+    akurasi = predicted_probabilities[0][predicted_class] * 100
+
+    # Menampilkan hasil prediksi
+    st.metric(label="Kelas Terprediksi", value=kelas)
+    st.metric(label="Akurasi Prediksi", value=f"{akurasi:.2f}%")
+
+    # Menampilkan gambar sesuai kelas
+    if kelas == 'Cacomantis Merulinus':
+        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/a.png"
+    elif kelas  == 'Culicicapa Ceylonensis':
+        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/b.png"
+    elif kelas  == 'Geopelia Striata':
+        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/c.png"
+    elif kelas  == 'Halcyon Smyrnensis':
+        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/d.png"
+    elif kelas  == 'Ninox Scutulata':
+        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/e.png"
+    elif kelas  == 'Orthotomus Ruficeps':
+        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/f.png"
+    elif kelas  == 'Pitta Sordida':
+        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/g.png"
+    elif kelas  == 'Prinia Flaviventris':
+        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/h.png"
+    elif kelas  == 'Spilopelia Chinensis':
+        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/i.png"
+    elif kelas  == 'Spilopelia Chinensis':
+        image_url = "https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/kelas/j.png"
+
+    st.image(image_url, caption=f"Kelas: {kelas}", use_column_width=True)
+
+# Footer
+st.markdown("### Version Beta 1.0.4")
+st.markdown("### On Progress Deployment")
