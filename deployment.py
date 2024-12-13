@@ -152,7 +152,7 @@ def add_bg_from_url():
 add_bg_from_url()
 
 # File uploader untuk audio
-uploaded_file = st.file_uploader("Upload File Audio Here", type=["mp3"])
+uploaded_file = st.file_uploader("Upload File Audio disini (!format mp3)", type=["mp3"])
 
 if uploaded_file:
     # Proses file audio
