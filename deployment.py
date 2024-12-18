@@ -43,8 +43,8 @@ import gdown
 import tensorflow as tf
 
 # Corrected Google Drive URL  (Ada Quota Excedeed per hari, karena akses web terlalu sering dan banyak secara bersamaan dalam satu waktu
-#drive_url = "https://drive.google.com/uc?id=1HNV0talV3HDmtkYUFZ6u0_hrugPcF4uc"  #alternatif model 1 Exceeded   akun analafeanalber
-drive_url = "https://drive.google.com/uc?id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq"    #alternatif model 2 Exceede 18.00  akun kelompok
+drive_url = "https://drive.google.com/uc?id=1HNV0talV3HDmtkYUFZ6u0_hrugPcF4uc"  #alternatif model 1 Exceeded   akun analafeanalber
+#drive_url = "https://drive.google.com/uc?id=1-6TpLc73-nLMn1z6vQEVjbr5uZHZLnsq"    #alternatif model 2 Exceede 18.00  akun kelompok
 #drive_url =  "https://drive.google.com/uc?id=1byy1lD2glyvUaA4Ht_xesnsmzJxomZv5" #alternatif model 3  akun lbero
 #drive_url =  "https://drive.google.com/uc?id=/10vvxBdSrSL0GvOV2Ymxu7TNdYnHnSgeJ" #alternatif model 4  akun cloudalber
 #drive_url =  "https://drive.google.com/uc?id=/179lgPiQpbdtu6Rnakf8kumoMGF1RO3Kb"  #alternatif model 5 akun alberanalafean
