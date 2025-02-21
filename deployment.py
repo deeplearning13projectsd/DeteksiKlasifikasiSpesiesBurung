@@ -17,7 +17,7 @@ def add_custom_header():
     <body margin: 20px;">
         <div style="text-align: center; margin-top: 30px; padding: 10px">
             <h1 style="font-size: 35px; tyle="text-align: center; margin-top: 20px;">
-                 <img src="https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/avcla.png" alt="Logo kelompok" width="350" height="350">
+                 <img src="https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/avcla.png" alt="Logo kelompok" width="250" height="250">
                 AVCLA (Aves Classification)
             </h1>
         </div>
