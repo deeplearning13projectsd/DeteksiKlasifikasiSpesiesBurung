@@ -21,7 +21,6 @@ def add_custom_header():
             </h1>
         </div>
         <div class="header" style="text-align: center; margin-top: 30px; padding: 10px">
-        <img src="https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/avcla.png" alt="Logo kelompok" width="250" height="250">
         </div>
     </body>
     </html>
@@ -208,7 +207,7 @@ def add_custom_footer():
     <html>
     <body>
         <div class="footer" style="text-align: center; margin-top: 30px; padding: 10px">
-            <img src="https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/avcla.png" alt="Logo kelompok" width="100" height="100">
+            <img src="https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/avcla.png" alt="Logo kelompok" width="350" height="350">
             <p style="margin: 5px 0;">AVCLA (Aves Classification) merupakan sebuah Website yang dirancang untuk mengklasifikasikan suara burung di Taman Nasional Way Kambas, menggunakan metode deep learning dengan teknik Transfer Learning yang memanfaatkan Arsitektur ConvNext Base. Dengan model yang telah dilatih secara khusus, website ini dapat mengenali suara dari 10 spesies burung yang ada di kawasan taman nasional way kambas dengan akurasi tinggi. Setelah proses klasifikasi suara selesai, website ini akan menampilkan informasi mendetail mengenai spesies burung yang teridentifikasi, termasuk nama burung, genus, dan informasi terkait lainnya yang terhubung langsung ke Avibase, database global burung. Tujuan utama dari website ini adalah untuk mendukung monitoring spesies burung di kawasan taman nasional, suaka margasatwa, bahkan kawasan konservasi lainnya. Dengan teknologi ini, pengelola kawasan dapat memantau keberadaan burung secara efisien dan tepat waktu. Website ini juga berkontribusi pada pencapaian Tujuan Pembangunan Berkelanjutan (SDGs) ke-15, yaitu untuk melindungi, memulihkan, dan meningkatkan pemanfaatan ekosistem darat secara berkelanjutan. Dengan demikian, website ini menjadi solusi teknologi yang mendukung konservasi alam dan keberagaman hayati di Indonesia.</p>
             <h4>‎‎‎‎‎‎‎‎ㅤ</h4>
             <h5 style="margin: 0;">© Developer: Kelompok 13 Deep Learning</h5>
