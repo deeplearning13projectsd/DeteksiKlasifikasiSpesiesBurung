@@ -219,7 +219,7 @@ def add_custom_footer():
                 </a>
             </p>
                 <h3>Supported By</h3>
-                <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo3.png" alt="Logo 3" width="60" height="60">
+                <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo3.png" alt="Logo 3" width="70" height="70">
             
       </div>
     </body>
