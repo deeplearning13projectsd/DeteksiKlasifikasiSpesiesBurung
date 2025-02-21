@@ -16,9 +16,9 @@ def add_custom_header():
     <html>
     <body margin: 20px;">
         <div style="text-align: center; margin-top: 30px; padding: 10px">
-           <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo1.png" alt="Logo 3" width="75" height="75">
-           <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo2.png" alt="Logo 3" width="70" height="70">
-           <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo3.png" alt="Logo 3" width="70" height="70">
+           <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo1.png" alt="Logo 3" width="85" height="85">
+           <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo2.png" alt="Logo 3" width="80" height="80">
+           <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo3.png" alt="Logo 3" width="80" height="80">
         </div>
         <div class="header" style="text-align: center; margin-top: 30px; padding: 10px">
         <h1 style="font-size: 35px; tyle="text-align: center; margin-top: 20px;">
