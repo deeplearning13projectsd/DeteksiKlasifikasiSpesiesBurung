@@ -24,7 +24,6 @@ def add_custom_header():
             <h1 style="font-size: 35px; tyle="text-align: center; margin-top: 20px;">
                 AVCLA (Aves Classification)
             </h1>
-            <img src="https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/avcla.png" alt="Logo kelompok" width="300" height="300">
             <h5 style="font-size: 28px; margin-top: 20px;">
                 Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas
             </h5>
@@ -215,6 +214,7 @@ def add_custom_footer():
     <body>
         <div class="footer" style="text-align: center; margin-top: 30px; padding: 10px">
             <h5 style="margin: 5px 0;">AVCLA</h5>
+            <img src="https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/avcla.png" alt="Logo kelompok" width="300" height="300">
             <p style="margin: 5px 0;">AVCLA (Aves Classification), merupakan sebuah website dalam mendeteksi klasifikasi burung di kawasan Taman Nasional Way Kambas. Website ini bisa mendeteksi klasifikasi pada 10 spesies burung, dengan memanfaatkan metode Deep Learning menggunakan Transfer Learning dengan arsitektur Convnext Type Base. Website ini bisa memprediksi spesies burung berdasarkan suara. Model ini dibangun dalam memenuhi Case Based Learning pada matakuliah SD4102 Deep Learning di Program Studi Sains Data.</p>
             <h4>‎‎‎‎‎‎‎‎ㅤ</h4>
             <h5 style="margin: 0;">© Developer: Kelompok 13 Deep Learning</h5>
