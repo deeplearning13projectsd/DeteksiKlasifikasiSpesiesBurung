@@ -24,7 +24,7 @@ def add_custom_header():
             <h1 style="font-size: 35px; tyle="text-align: center; margin-top: 20px;">
                 AVCLA (Aves Classification)
             </h1>
-            <img src="https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/avcla.png" alt="Logo kelompok" width="95" height="95">
+            <img src="https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/avcla.png" alt="Logo kelompok" width="140" height="140">
             <h5 style="font-size: 28px; margin-top: 20px;">
                 Implementasi Model Transfer Learning Arsitektur ConvNeXt untuk Klasifikasi Suara Burung di Taman Nasional Way Kambas
             </h5>
