@@ -15,10 +15,8 @@ def add_custom_header():
     html_code = """
     <html>
     <body margin: 20px;">
-        <div style="text-align: center; margin-top: 30px; padding: 10px"> 
-            <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo1.png" alt="Logo 1" width="75" height="75">    
-            <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo2.png" alt="Logo 2" width="75" height="75"> 
-            <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo3.png" alt="Logo 3" width="75" height="75">
+        <div style="text-align: center; margin-top: 30px; padding: 10px">
+            <img src="https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/avcla.png" alt="Logo kelompok" width="350" height="350">
         </div>
         <div class="header" style="text-align: center; margin-top: 30px; padding: 10px">
             <h1 style="font-size: 35px; tyle="text-align: center; margin-top: 20px;">
@@ -210,7 +208,7 @@ def add_custom_footer():
     <html>
     <body>
         <div class="footer" style="text-align: center; margin-top: 30px; padding: 10px">
-            <img src="https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/avcla.png" alt="Logo kelompok" width="300" height="300">
+            <img src="https://raw.githubusercontent.com/deeplearning13projectsd/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/avcla.png" alt="Logo kelompok" width="100" height="100">
             <p style="margin: 5px 0;">AVCLA (Aves Classification) merupakan sebuah Website yang dirancang untuk mengklasifikasikan suara burung di Taman Nasional Way Kambas, menggunakan metode deep learning dengan teknik Transfer Learning yang memanfaatkan Arsitektur ConvNext Base. Dengan model yang telah dilatih secara khusus, website ini dapat mengenali suara dari 10 spesies burung yang ada di kawasan taman nasional way kambas dengan akurasi tinggi. Setelah proses klasifikasi suara selesai, website ini akan menampilkan informasi mendetail mengenai spesies burung yang teridentifikasi, termasuk nama burung, genus, dan informasi terkait lainnya yang terhubung langsung ke Avibase, database global burung. Tujuan utama dari website ini adalah untuk mendukung monitoring spesies burung di kawasan taman nasional, suaka margasatwa, bahkan kawasan konservasi lainnya. Dengan teknologi ini, pengelola kawasan dapat memantau keberadaan burung secara efisien dan tepat waktu. Website ini juga berkontribusi pada pencapaian Tujuan Pembangunan Berkelanjutan (SDGs) ke-15, yaitu untuk melindungi, memulihkan, dan meningkatkan pemanfaatan ekosistem darat secara berkelanjutan. Dengan demikian, website ini menjadi solusi teknologi yang mendukung konservasi alam dan keberagaman hayati di Indonesia.</p>
             <h4>‎‎‎‎‎‎‎‎ㅤ</h4>
             <h5 style="margin: 0;">© Developer: Kelompok 13 Deep Learning</h5>
@@ -219,6 +217,10 @@ def add_custom_footer():
                 <a href="https://github.com/sains-data/Implementasi-Model-Transfer-Learning-Arsitektur-ConvNeXt-untuk-Klasifikasi-Suara-Burung-di-TNWK" target="_blank">
                     Visit the Our GitHub Repository
                 </a>
+                <h3>Supported By</h3>
+                <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo1.png" alt="Logo 1" width="60" height="60">    
+                <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo2.png" alt="Logo 2" width="60" height="60"> 
+                <img src="https://raw.githubusercontent.com/alberanalafean22/DeteksiKlasifikasiSpesiesBurung/main/Deployment/asset/Logo3.png" alt="Logo 3" width="60" height="60">
             </p>
       </div>
     </body>
